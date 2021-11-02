@@ -12,4 +12,16 @@ parameter and outputs a corresponding message.
  */
 
 public class PerfectNumber {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Enter an integer number bigger than 2: ");
+        int n = in.nextInt(); //get input
+        int fibSeq = 0; //declare and init output
+        //System.out.print("The Fibonacci number is: "+ isPerfectNumber(n));
+    }
+
+    public static boolean isPerfectNumber(int n) {
+
+    }
 }
