@@ -35,10 +35,12 @@ public class SquareRoot {
         double iCurrent = 0; //declare and init 2nd storage var
 
         while (Math.abs(iCurrent-iMinusOne)<= epsilon ) {
-            iMinusOne = iCurrent;
-            double x0 = a / 2;
-            double x1 = (x0 + (a / x0)) / 2;
-            iCurrent = x1;
+            double xi_1 = a / 2;;
+            double xi= (xi_1 + (a / xi_1)) / 2;
+
+            double iTemp = xi;
+            iMinusOne = xi_1;
+            iCurrent = xi;
             }
         System.out.print(iCurrent);
     } //close main
