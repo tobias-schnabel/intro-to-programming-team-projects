@@ -17,11 +17,14 @@ public class PerfectNumber {
 
         System.out.print("Enter an integer number bigger than 2: ");
         int n = in.nextInt(); //get input
-        int fibSeq = 0; //declare and init output
-        //System.out.print("The Fibonacci number is: "+ isPerfectNumber(n));
+        int perfNum = 0; //declare and init output
+        if (isPerfectNumber(n)) {
+            System.out.print(n + " is a perfect number");
+        } else{
+            System.out.print(n + " is not perfect number");
     }
-
+    } //close main
     public static boolean isPerfectNumber(int n) {
 
-    }
-}
+
+} //close class
