@@ -23,27 +23,7 @@ public class SumOfMultiples {
    public static int compute(int n) {
            
       int x = 0; //declare and init return var
-   
-   /*the following block of code is precise to the wording of the exercise:
-   it adds up ALL multiples of 3 and 5, so e.g. 15 is added TWICE
-  (multiple of 3 and of 5) */
-  //   for (int  y = 1; y <= n; y++) {
-//        int multip3 = 3 * y;
-//        if (multip3 <= n) {
-//          x += multip3;} else {
-//          x += 0;}
-//       } //close loop
-//       
-//     for (int  y = 1; y <= n; y++) {
-//        int multip5 = 5 * y;
-//        if (multip5 <= n) {
-//          x += multip5;} else {
-//          x += 0;}    
-//      } //close loop
 
-
-/*the following block of code follows the example in the exercise:
-   it adds up only UNIQUE multiples of 3 and 5 */
   for (int  y = 1; y <= n; y++) {
        int multip3 = 3 * y;
        int multip5 = 5 * y;
