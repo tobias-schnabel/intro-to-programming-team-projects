@@ -26,27 +26,24 @@ public class SquareRoot {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        System.out.print("Enter alpha ");
-        double alpha = in.nextDouble(); //get input
+        System.out.print("Enter a ");
+        double a = in.nextDouble(); //get input
         System.out.print("Enter epsilon ");
         double epsilon = in.nextDouble();
-    } //close main
 
-    public static double approx(double alpha){
-        int i=0;
         double iMinusOne = 0; //declare and init storage var
         double iCurrent = 0; //declare and init 2nd storage var
-        while (iMinusOne ){
-            double x0 = alpha/2;
-            double x1=(x0+(alpha/x0))/2;
-            Math.abs()
+
+        while (Math.abs(iCurrent-iMinusOne)<= epsilon ) {
+            iMinusOne = iCurrent;
+            double x0 = a / 2;
+            double x1 = (x0 + (a / x0)) / 2;
             iCurrent = x1;
+            }
+        System.out.print(iCurrent);
+    } //close main
 //temp var holds val xi+1
             //compute xi and xi+1 new vals
             //use temp to assign xi
-            i++;
 
-
-        }
-    }
 } //close class
