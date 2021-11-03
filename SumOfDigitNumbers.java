@@ -4,7 +4,6 @@ Authors: Dohmen, RJH (i6250494)
          Schnabel, CT (i6255807)*/
 
 import java.util.Scanner;
-import java.lang.Math;
 
 /*A digit sum number is a positive integer, which contains a digit
 that is equal to the sum of all the other digits. There are no
@@ -17,5 +16,28 @@ are multiples of 11. Some examples of digit sum numbers having three digits are
 
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
-        } //close main
+
+
+            System.out.print("Enter an integer n>1 ");
+            int n = in.nextInt(); //get input, # of digits
+
+
+    }//close main
+
+    public static int numGen(int n){
+            int sum =0;
+            for (int i=0; i<=9; i++){ //gen all possible numbers
+              sum += i;
+                int num = i;
+                int sum = 0;
+                while (num > 0) {
+                    sum = sum + num % 10;
+                    num = num / 10;
+                }
+
+        }
+
+    } //close method
+
+
 } //close class
