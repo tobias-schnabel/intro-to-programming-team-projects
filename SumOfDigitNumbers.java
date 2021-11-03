@@ -23,7 +23,7 @@ are multiples of 11. Some examples of digit sum numbers having three digits are
 
 
     }//close main
-
+/*
     public static int numGen(int n){
             int sum =0;
             for (int i=0; i<=9; i++){ //gen all possible numbers
@@ -41,3 +41,4 @@ are multiples of 11. Some examples of digit sum numbers having three digits are
 
 
 } //close class
+*/}
