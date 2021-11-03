@@ -35,10 +35,10 @@ public class SquareRoot {
         double xiPlusOne = 0; //declare and init 2nd storage var
 
         while (Math.abs(xiPlusOne-xi) > epsilon ) {
-
             double xitemp= (xi + (a / xi)) /2;
-            xiPlusOne = xitemp;
-            }
+            xiPlusOne = xi;
+            xi = xitemp;
+        }
         System.out.print("The approximate value of sqrt(a) is "+xi);
     } //close main
             //temp var holds val xi+1
