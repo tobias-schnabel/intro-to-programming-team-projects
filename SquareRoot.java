@@ -31,13 +31,13 @@ public class SquareRoot {
         System.out.print("Enter epsilon ");
         double epsilon = in.nextDouble();
 
-        double xiMinusOne = a/2; //declare and init first var
-        double xi = xiMinusOne; //declare and init 2nd storage var
+        double xi = a/2; //declare and init first var
+        double xiPlusOne = 0; //declare and init 2nd storage var
 
-        while (Math.abs(xi-xiMinusOne)<= epsilon ) {
+        while (Math.abs(xiPlusOne-xi) > epsilon ) {
 
-             xi= (xiMinusOne + (a / xiMinusOne)) / 2;
-            xiMinusOne = xi;
+            double xitemp= (xi + (a / xi)) /2;
+            xiPlusOne = xitemp;
             }
         System.out.print("The approximate value of sqrt(a) is "+xi);
     } //close main
