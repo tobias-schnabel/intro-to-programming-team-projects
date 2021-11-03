@@ -31,20 +31,17 @@ public class SquareRoot {
         System.out.print("Enter epsilon ");
         double epsilon = in.nextDouble();
 
-        double iMinusOne = 0; //declare and init storage var
-        double iCurrent = 0; //declare and init 2nd storage var
+        double xiMinusOne = a/2; //declare and init first var
+        double xi = xiMinusOne; //declare and init 2nd storage var
 
-        while (Math.abs(iCurrent-iMinusOne)<= epsilon ) {
-            double xi_1 = a / 2;;
-            double xi= (xi_1 + (a / xi_1)) / 2;
+        while (Math.abs(xi-xiMinusOne)<= epsilon ) {
 
-            double iTemp = xi;
-            iMinusOne = xi_1;
-            iCurrent = xi;
+             xi= (xiMinusOne + (a / xiMinusOne)) / 2;
+            xiMinusOne = xi;
             }
-        System.out.print(iCurrent);
+        System.out.print("The approximate value of sqrt(a) is "+xi);
     } //close main
-//temp var holds val xi+1
+            //temp var holds val xi+1
             //compute xi and xi+1 new vals
             //use temp to assign xi
 
