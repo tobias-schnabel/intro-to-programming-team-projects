@@ -52,21 +52,36 @@ public class StringAddition {
         int newlength1 = s1new.length();
         int newlength2 = s2new.length();
 
+        int carryOver = 0; //stores value outside loop if sum of string chars is >10
+
         if (newlength1 == newlength2) {
-            for (int x = 0; x <= (newlength1 - 1); x++) {
-                char charS1 = s1new.charAt(x);
-                        int charS1Int = Character.getNumericValue(s1new.charAt(x));
-                        int charS2Int = Character.getNumericValue(s2new.charAt(x));
-                    int charsum = charS1Int + charS2Int;
-                sOut += charsum;
+            for (int x = (newlength1 - 1); x >= 0; x--) {
+
+                int charS1Int = Character.getNumericValue(s1new.charAt(x));
+                int charS2Int = Character.getNumericValue(s2new.charAt(x));
+                int charsum = charS1Int + charS2Int;
+                if (charsum > 10){
+                    int remainder = charsum % 10;
+                    int addremainder = remainder + carryOver;
+                    sOut += addremainder;
+                }
+                else if (charsum < 10){
+                    int newValue = charsum + carryOver;
+                    sOut += newValue;
+                }
+                if (charsum > 10) {
+                    int remainder = charsum % 10;
+                    carryOver = remainder;
+                }
             }
-        } else {
+
+        } else if (newlength1 != newlength2) {
            sOut = "INVALID";
         }
 
         return sOut;
 
     } //close method
-}
+} // close class
 
 
