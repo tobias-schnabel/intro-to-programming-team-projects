@@ -22,13 +22,15 @@ public class StringAddition {
         String s1in = in.next();
         System.out.println("Enter the second number:");
         String s2in = in.next();
-        System.out.println(StringSum(s1in, s2in));
+
+        System.out.println("The Sum of these two Numbers is " + StringSum(s1in, s2in) + ".");
+
 } //close main
 
     public static String StringSum(String s1in, String s2in){
         int length1 = s1in.length();
         int length2 = s2in.length();
-        int lengthdiff = Math.abs(length1-length2); //get difference in stringth lengths
+        int lengthdiff = Math.abs(length1-length2)-1; //get difference in string lengths
         String s1new = "";
         String s2new = "";
         String sOut = ""; //declare and init return vars
@@ -37,12 +39,14 @@ public class StringAddition {
                 s2new += "0";
             }
             s2new += s2in;
+            s1new = s1in;
         }
             else if (length1 < length2) {
             for (int i = 0; i <= lengthdiff; i++) {
                 s1new += "0";
             }
             s1new += s1in;
+            s2new = s2in;
         }
 
         int newlength1 = s1new.length();
@@ -50,14 +54,16 @@ public class StringAddition {
 
         if (newlength1 == newlength2) {
             for (int x = 0; x <= (newlength1 - 1); x++) {
-                int charsum = s1new.charAt(x) + s2new.charAt(x);
+                char charS1 = s1new.charAt(x);
+                        int charS1Int = Character.getNumericValue(s1new.charAt(x));
+                        int charS2Int = Character.getNumericValue(s2new.charAt(x));
+                    int charsum = charS1Int + charS2Int;
                 sOut += charsum;
             }
         } else {
-           System.out.println("Unequal lengths");
-            sOut = "INVALID";
+           sOut = "INVALID";
         }
-        System.out.println(sOut);
+
         return sOut;
 
     } //close method
