@@ -54,7 +54,7 @@ public class StringAddition {
         int newlength2 = s2new.length();
 
         int carryOver = 0; //stores value outside loop if sum of string chars is >10
-
+        int remainder;
         if (newlength1 == newlength2) {
             for (int x = (newlength1 -1); x >= 0; x--) {
 
@@ -65,16 +65,13 @@ public class StringAddition {
                 if (sumPlusRemainder < 10){
                     sOut += sumPlusRemainder;
                     carryOver = 0;
-                } else if (sumPlusRemainder >= 10 & x > 0){
-                int remainder = 1;
-                    int addremainder = sumPlusRemainder % 10;
-                    sOut += charsum;
-                    carryOver = remainder;
-                } else if (sumPlusRemainder >= 10 & x == 0) {
-                    int remainder = 1;
-                    sOut += charsum;
+                } else{
+                   remainder = sumPlusRemainder % 10;
+                   carryOver =1;
+                   sOut += remainder;
+                }
+                if (x == 0 & carryOver > 0) {
                     sOut += carryOver;
-                    carryOver = remainder;
                 }
             } //close loop
             } else if (newlength1 != newlength2) {
