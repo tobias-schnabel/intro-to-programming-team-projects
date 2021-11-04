@@ -14,17 +14,19 @@ should return the sum of the two values as a String. You should achieve this
   Then write a program int StringAddition which tests the above method.
  */
 
-/* Methods below assume proper input as discussed in class */
+/* Methods below assume proper, positive integer input as discussed with tutor */
 
 public class StringAddition {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter the first number:");
+
+        System.out.println("Enter the first number (positive integer):");
         String s1in = in.next(); //first input string
-        System.out.println("Enter the second number:");
+
+        System.out.println("Enter the second number (positive integer):");
         String s2in = in.next(); //second input string
 
-        String sOut = StringSum(s1in, s2in);
+        String sOut = StringSum(s1in, s2in); //
         System.out.println("The Sum of these two Numbers is " + SumReturn(sOut) + ".");
 
 } //close main
