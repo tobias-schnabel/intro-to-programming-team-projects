@@ -48,7 +48,11 @@ public class StringAddition {
             }
             s1new += s1in;
             s2new = s2in;
+        } else if (length1 == length2){
+                s1new += s1in;
+                s2new += s2in;
         }
+
 
         int newlength1 = s1new.length();
         int newlength2 = s2new.length();
