@@ -26,5 +26,22 @@ public class PerfectNumber {
     } //close main
     public static boolean isPerfectNumber(int n) {
 
+        int sumList =0; //return var
+        for (int i=1; i <=n; i++){
+            if (n % i == 0) {
+                sumList += i;
+            } else {
+                sumList += 0;
+            }
+        }
+
+        sumList = sumList/2;
+        if (sumList == n){
+            return true;
+        } else {
+            return false;
+        }
+        } //close method
+
 
 } //close class

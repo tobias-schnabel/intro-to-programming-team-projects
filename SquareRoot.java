@@ -1,5 +1,5 @@
 
-/* DayOfWeek.java
+/* SquareRoot.java
 Authors: Dohmen, RJH (i6250494)
          Schnabel, CT (i6255807)*/
 
@@ -31,21 +31,18 @@ public class SquareRoot {
         System.out.print("Enter epsilon ");
         double epsilon = in.nextDouble();
 
-        double iMinusOne = 0; //declare and init storage var
-        double iCurrent = 0; //declare and init 2nd storage var
+        double xi = a/2; //declare and init first var
+        double xiStorage = 0; //declare and init storage var
 
-        while (Math.abs(iCurrent-iMinusOne)<= epsilon ) {
-            double xi_1 = a / 2;;
-            double xi= (xi_1 + (a / xi_1)) / 2;
-
-            double iTemp = xi;
-            iMinusOne = xi_1;
-            iCurrent = xi;
-            }
-        System.out.print(iCurrent);
+        while (Math.abs(xiStorage-xi) > epsilon ) {
+            double xitemp= (xi + (a / xi)) /2; //temp var holds val xi+1
+            xiStorage = xi; //assign xi to xi+1
+            xi = xitemp; //assign xi+1 temp to xi
+        }
+        System.out.print("The approximate value of sqrt(a) is "+xi);
     } //close main
-//temp var holds val xi+1
-            //compute xi and xi+1 new vals
+
+
             //use temp to assign xi
 
 } //close class
