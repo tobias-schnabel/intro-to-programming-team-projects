@@ -1,5 +1,5 @@
 
-/* DayOfWeek.java
+/* SumofDigitSumNumbers.java
 Authors: Dohmen, RJH (i6250494)
          Schnabel, CT (i6255807)*/
 
@@ -16,7 +16,6 @@ are multiples of 11. Some examples of digit sum numbers having three digits are
 
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
-
 
             System.out.print("Enter an integer n>1 ");
             int n = in.nextInt(); //get input, # of digits

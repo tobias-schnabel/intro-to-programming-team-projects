@@ -32,7 +32,6 @@ public class StringAddition {
 } //close main
 
 
-
     public static String StringSum(String s1in, String s2in){
         int length1 = s1in.length();
         int length2 = s2in.length();
@@ -88,7 +87,8 @@ public class StringAddition {
         return sOutTemp;
     } //close method
 
-        public static String SumReturn(String sOut) {
+
+    public static String SumReturn(String sOut) {
             String sReturn = ""; //declare and init final return var
             int outlength = sOut.length();
             for (int j = outlength-1; j >= 0; j-- ){
