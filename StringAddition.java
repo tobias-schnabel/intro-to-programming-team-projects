@@ -14,18 +14,22 @@ should return the sum of the two values as a String. You should achieve this
   Then write a program int StringAddition which tests the above method.
  */
 
+/* Methods below assume proper input as discussed in class */
 
 public class StringAddition {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter the first number:");
-        String s1in = in.next();
+        String s1in = in.next(); //first input string
         System.out.println("Enter the second number:");
-        String s2in = in.next();
+        String s2in = in.next(); //second input string
 
-        System.out.println("The Sum of these two Numbers is " + StringSum(s1in, s2in) + ".");
+        String sOut = StringSum(s1in, s2in);
+        System.out.println("The Sum of these two Numbers is " + SumReturn(sOut) + ".");
 
 } //close main
+
+
 
     public static String StringSum(String s1in, String s2in){
         int length1 = s1in.length();
@@ -33,26 +37,25 @@ public class StringAddition {
         int lengthdiff = Math.abs(length1-length2)-1; //get difference in string lengths
         String s1new = "";
         String s2new = "";
-        String sOut = ""; //declare and init intermediate return var
-        String sReturn = ""; //declare and init final return var
+        String sOutTemp = ""; //declare and init intermediate return var
+
         if (length1 > length2) {
             for (int i = 0; i <= lengthdiff; i++) {
                 s2new += "0";
             }
             s2new += s2in;
             s1new = s1in;
-        }
+            }
             else if (length1 < length2) {
             for (int i = 0; i <= lengthdiff; i++) {
                 s1new += "0";
             }
             s1new += s1in;
             s2new = s2in;
-        } else if (length1 == length2){
+            } else if (length1 == length2){
                 s1new += s1in;
                 s2new += s2in;
-        }
-
+            }
 
         int newlength1 = s1new.length();
         int newlength2 = s2new.length();
@@ -61,31 +64,33 @@ public class StringAddition {
         int remainder;
         if (newlength1 == newlength2) {
             for (int x = (newlength1 -1); x >= 0; x--) {
-
                 int charS1Int = Character.getNumericValue(s1new.charAt(x));
                 int charS2Int = Character.getNumericValue(s2new.charAt(x));
                 int charsum = charS1Int + charS2Int;
                 int sumPlusRemainder = charsum + carryOver;
                 if (sumPlusRemainder < 10){
-                    sOut += sumPlusRemainder;
+                    sOutTemp += sumPlusRemainder;
                     carryOver = 0;
                 } else{
                    remainder = sumPlusRemainder % 10;
                    carryOver =1;
-                   sOut += remainder;
+                   sOutTemp += remainder;
                 }
                 if (x == 0 & carryOver > 0) {
-                    sOut += carryOver;
+                    sOutTemp += carryOver;
                 }
             } //close loop
-            } else if (newlength1 != newlength2) {
-            sReturn = "INVALID";
-        }
-            //mirror sOut because addition carried out back to front
+            } else if (newlength1 != newlength2) { //failsafe to break in case of improper execution
+            sOutTemp = "DILAVNI"; //"Invalid" in final output
+                }
+        return sOutTemp;
+    } //close method
 
+        public static String SumReturn(String sOut) {
+            String sReturn = ""; //declare and init final return var
             int outlength = sOut.length();
             for (int j = outlength-1; j >= 0; j-- ){
-                sReturn += sOut.charAt(j);
+                sReturn += sOut.charAt(j); //mirror sOut because addition was carried out back to front
             }
 
         return sReturn;
