@@ -33,7 +33,8 @@ public class StringAddition {
         int lengthdiff = Math.abs(length1-length2)-1; //get difference in string lengths
         String s1new = "";
         String s2new = "";
-        String sOut = ""; //declare and init return vars
+        String sOut = ""; //declare and init intermediate return var
+        String sReturn = ""; //declare and init final return var
         if (length1 > length2) {
             for (int i = 0; i <= lengthdiff; i++) {
                 s2new += "0";
@@ -60,26 +61,30 @@ public class StringAddition {
                 int charS1Int = Character.getNumericValue(s1new.charAt(x));
                 int charS2Int = Character.getNumericValue(s2new.charAt(x));
                 int charsum = charS1Int + charS2Int;
-                if (charsum > 10){
-                    int remainder = charsum % 10;
+                int sumPlusRemainder = charsum + carryOver;
+                if (sumPlusRemainder < 10){
+                    sOut += sumPlusRemainder;
+                } else if (sumPlusRemainder > 10 & x > 0){
+                int remainder = charsum % 10;
                     int addremainder = remainder + carryOver;
                     sOut += addremainder;
-                }
-                else if (charsum < 10){
-                    int newValue = charsum + carryOver;
-                    sOut += newValue;
-                }
-                if (charsum > 10) {
-                    int remainder = charsum % 10;
                     carryOver = remainder;
+                } else if (sumPlusRemainder > 10 & x == 0) {
+                    sOut += charsum;
+                    sOut += carryOver;
                 }
+            } //close loop
+            } else if (newlength1 != newlength2) {
+            sReturn = "INVALID";
+        }
+            //mirror sOut because addition carried out back to front
+
+            int outlength = sOut.length();
+            for (int j = outlength-1; j >= 0; j-- ){
+                sReturn += sOut.charAt(j);
             }
 
-        } else if (newlength1 != newlength2) {
-           sOut = "INVALID";
-        }
-
-        return sOut;
+        return sReturn;
 
     } //close method
 } // close class
