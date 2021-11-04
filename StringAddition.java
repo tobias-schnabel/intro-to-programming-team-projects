@@ -1,5 +1,5 @@
 
-/* DayOfWeek.java
+/* StringAddition.java
 Authors: Dohmen, RJH (i6250494)
          Schnabel, CT (i6255807)*/
 
@@ -56,7 +56,7 @@ public class StringAddition {
         int carryOver = 0; //stores value outside loop if sum of string chars is >10
 
         if (newlength1 == newlength2) {
-            for (int x = (newlength1 - 1); x >= 0; x--) {
+            for (int x = (newlength1 -1); x >= 0; x--) {
 
                 int charS1Int = Character.getNumericValue(s1new.charAt(x));
                 int charS2Int = Character.getNumericValue(s2new.charAt(x));
@@ -64,14 +64,17 @@ public class StringAddition {
                 int sumPlusRemainder = charsum + carryOver;
                 if (sumPlusRemainder < 10){
                     sOut += sumPlusRemainder;
-                } else if (sumPlusRemainder > 10 & x > 0){
-                int remainder = charsum % 10;
-                    int addremainder = remainder + carryOver;
-                    sOut += addremainder;
+                    carryOver = 0;
+                } else if (sumPlusRemainder >= 10 & x > 0){
+                int remainder = 1;
+                    int addremainder = sumPlusRemainder % 10;
+                    sOut += charsum;
                     carryOver = remainder;
-                } else if (sumPlusRemainder > 10 & x == 0) {
+                } else if (sumPlusRemainder >= 10 & x == 0) {
+                    int remainder = 1;
                     sOut += charsum;
                     sOut += carryOver;
+                    carryOver = remainder;
                 }
             } //close loop
             } else if (newlength1 != newlength2) {
