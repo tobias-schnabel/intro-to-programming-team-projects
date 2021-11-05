@@ -42,7 +42,4 @@ public class SquareRoot {
         System.out.print("The approximate value of sqrt(a) is "+xi);
     } //close main
 
-
-            //use temp to assign xi
-
 } //close class
