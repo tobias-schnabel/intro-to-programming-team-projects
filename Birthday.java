@@ -1,7 +1,3 @@
-/* Birthday.java
-Authors: Dohmen, RJH (i6250494)
-         Schnabel, CT (i6255807)*/
-
 import java.util.Scanner;
 
 public class Birthday {
