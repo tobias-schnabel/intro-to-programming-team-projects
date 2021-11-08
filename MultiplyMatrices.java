@@ -20,8 +20,8 @@ public class MultiplyMatrices {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter the matrix size");
         int n = in.nextInt();  // matrix size is n
-        int[][] matrixA = randomMatrix(n); //gets random matrix 1
-        int[][] matrixB = randomMatrix(n); //gets random matrix 2
+        int[][] matrixA = randomMatrix(n); //gets random matrix A
+        int[][] matrixB = randomMatrix(n); //gets random matrix B
 
         //test matrices
 //        int[][] matrixA = {{4,9,2},{0,0,7},{1,3,2}};
@@ -66,30 +66,23 @@ public class MultiplyMatrices {
 
         if (colsA == rowsB) {
             product = new int[rowsA][colsB];
-//            for (int i = 0; i < rowsA; i++) {
-//                for (int j = 0; j < colsB; j++) {
-//                    product[i][j] = matrixA[i][j] * matrixB[i][j];
-//                }
-//            }
-            //multiplying and printing multiplication of 2 matrices
             for(int i=0 ;i < colsA; i++){ //row loop
+
                 for(int j=0; j < rowsB; j++){ //col loop
+
                     product[i][j]=0; //initialize
+
                     for(int k=0 ; k < rowsA ; k++) { //running index given specific row and col position
                         product[i][j]+=matrixA[i][k] * matrixB[k][j];
                     }//end of k loop
                 }//end of col loop
             } //end of row loop
 
-
         } else {
             product = null;
         }
 
         return product;
-
     } //close method
-
-
 
 } //close class
