@@ -15,8 +15,15 @@ public class StandardDeviation {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter how many elements the array should contain");
         int n = in.nextInt();  // number of elements of array is n
-        double[] array = randomDoubleArray(n);
-        System.out.println("The std. dev. of the randomly generated string " + Arrays.toString(array) + " is " + standardDeviation(array));
+        //double[] array = randomDoubleArray(n); //gets random array
+
+        //////TEST PARAMETERS
+        n = 4;
+        double[] array = new double[4];
+        array = new double[]{15.2, 16.4, 982374.5, 100.5};
+        System.out.println("The  randomly generated array is " + Arrays.toString(array));
+        System.out.println("The std. dev. of this array is " + standardDeviation(array));
+        // mean works fine, problem is in SD method
     } //close main
 
     public static double standardDeviation(double[] arrayIn) {
