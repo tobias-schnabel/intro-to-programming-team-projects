@@ -1,3 +1,10 @@
+/* PercentEven.java
+Authors: Dohmen, RJH (i6250494)
+         Schnabel, CT (i6255807)
+Write a method percentEven of return type double that takes as parameter an array of integers
+and returns the percentage of elements that are even.
+Then write a program PercentEven that tests your method. */
+
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
