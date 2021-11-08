@@ -15,12 +15,8 @@ public class StandardDeviation {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter how many elements the array should contain");
         int n = in.nextInt();  // number of elements of array is n
-        //double[] array = randomDoubleArray(n); //gets random array
+        double[] array = randomDoubleArray(n); //gets random array
 
-        //////TEST PARAMETERS
-        n = 4;
-        double[] array = new double[4];
-        array = new double[]{15.2, 16.4, 982374.5, 100.5};
         System.out.println("The  randomly generated array is " + Arrays.toString(array));
         System.out.println("The std. dev. of this array is " + standardDeviation(array));
         // mean works fine, problem is in SD method
@@ -30,13 +26,22 @@ public class StandardDeviation {
         //get mean of array from other method once
         double mean = arrayMean(arrayIn);
 
-        double sum = 0; // sum of squared deviations
+        double total = 0; // sum of squared deviations
+        double sumnormal =0;
         for (double value : arrayIn) {
-            sum += Math.pow((value - mean), 2);
+           total += Math.pow((value - mean), 2);
         }
 
-        double sd = Math.sqrt((sum / arrayIn.length));
-        return sd;
+        return Math.sqrt((total / arrayIn.length));
+    } //close method
+
+    //computes mean of array
+    public static double arrayMean(double[] arrayIn) {
+        double sumElements = 0;
+        for (double x : arrayIn) {
+            sumElements += x; // running total
+        }
+        return (sumElements / arrayIn.length);
     } //close method
 
     // returns an array of length n containing random double values
@@ -47,15 +52,6 @@ public class StandardDeviation {
             array[i] = random.nextDouble();
         }
         return array;
-    } //close method
-
-    public static double arrayMean(double[] arrayIn) {
-        double sumElements = 0;
-        for (double x : arrayIn) {
-            sumElements += x; // running total
-        }
-        double arrayMean = sumElements / arrayIn.length; //divide by length to get mean
-        return arrayMean;
     } //close method
 
 } //close class
