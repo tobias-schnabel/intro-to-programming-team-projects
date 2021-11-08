@@ -27,7 +27,6 @@ public class StandardDeviation {
         double mean = arrayMean(arrayIn);
 
         double total = 0; // sum of squared deviations
-        double sumnormal =0;
         for (double value : arrayIn) {
            total += Math.pow((value - mean), 2);
         }
