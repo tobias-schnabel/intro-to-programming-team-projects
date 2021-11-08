@@ -7,101 +7,82 @@ with integer entries. It should contain a method multiply with the following sig
 to multiply two such matrices as well as a method to print a matrix on the screen:
 public static int[][] multiply(int[][] matrixA, int[][] matrixB)
  */
+import java.util.Random;
 import java.util.Scanner;
-import java.io.*;
+// import java.io.*;
+import java.util.Arrays;
 
 //questions for Arman : what about I/O? how do we get input? Use methods from AddMatrices?
 public class MultiplyMatrices {
 
     public static void main(String[] args) {
 
-        String filenameMatrix1 = args[0];
-        String filenameMatrix2 = args[1];
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the matrix size");
+        int n = in.nextInt();  // matrix size is n
+        int[][] matrixA = randomMatrix(n); //gets random matrix A
+        int[][] matrixB = randomMatrix(n); //gets random matrix B
 
-        int[][] matrix1 = null;
-        int[][] matrix2 = null;
-        int[][] product = null;
+        //test matrices
+//        int[][] matrixA = {{4,9,2},{0,0,7},{1,3,2}};
+//        int[][] matrixB = {{5,6,0},{2,1,2},{9,6,1}};
+//        int n = 3;
+        //
 
-        try{
-            matrix1 = readMatrix(filenameMatrix1);
-            matrix2 = readMatrix(filenameMatrix2);
-            product = multiply(matrix1, matrix2);
+
+        System.out.println("Matrix A:" );
+        printMatrix(matrixA);
+        System.out.println("Matrix B:" );
+        printMatrix(matrixB);
+        System.out.println("Matrix A * B:" );
+        printMatrix(multiply(matrixA, matrixB));
+
+//    int[][] resultMatrix = multiply(matrixA, matrixB)
+//            printMatrix(resultMatrix);
+
+        } //close main
+
+    public static void printMatrix(int[][] matrix){
+        for (int[] ints : matrix) System.out.println(Arrays.toString(ints));
+    } //close print matrix method
+
+    // returns an array of length n containing random double values
+    public static int[][] randomMatrix(int n){
+        Random random = new Random();
+        int[][] matrix = new int[n][n];
+        for (int[] row: matrix) {
+            Arrays.fill(row, random.nextInt());
         }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-        try{
-            writeMatrix(product, "sumOfMatrices.txt");
-        }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-    }
+        return matrix;
+    } //close method
 
     public static int[][] multiply(int[][] matrixA, int[][] matrixB) {
         int[][] product;
         //get matrix dimensions
         int rowsA = matrixA.length;
-        int colsA= matrixA[0].length;
+        int colsA = matrixA[0].length;
         int rowsB = matrixB.length;
         int colsB = matrixB[0].length;
 
-        if (colsA == rowsB){
-
-
+        if (colsA == rowsB) {
             product = new int[rowsA][colsB];
-            for (int i=0;i<rowsA;i++){
-                for (int j=0;j<colsB;j++){
-                    product[i][j] = matrixA[i][j] * matrixB[i][j];
-                }
-            }
+            for(int i=0 ;i < colsA; i++){ //row loop
 
+                for(int j=0; j < rowsB; j++){ //col loop
+
+                    product[i][j]=0; //initialize
+
+                    for(int k=0 ; k < rowsA ; k++) { //running index given specific row and col position
+                        product[i][j]+=matrixA[i][k] * matrixB[k][j];
+                    }//end of k loop
+                }//end of col loop
+            } //end of row loop
 
         } else {
             product = null;
         }
 
-       return product;
-
+        return product;
     } //close method
-
-    public static int[][] readMatrix(String filename)
-            throws java.io.FileNotFoundException{
-        File file = new File(filename);
-        Scanner input = new Scanner (file);
-
-        int rows = input.nextInt();
-        int columns = input.nextInt();
-
-        int[][] matrix = new int[rows][columns];
-
-        for (int i=0;i<rows;i++){
-            for (int j=0;j<columns;j++){
-                matrix [i] [j]= input.nextInt();
-
-            }
-        }
-
-        input.close();
-        return matrix;
-    } //close method
-
-    public static void writeMatrix(int[][] matrix, String filename)
-            throws java.io.FileNotFoundException{
-        File output = new File(filename);
-        PrintWriter printer = new PrintWriter(output);
-        // write dimensions of matrix at beginning of file
-        printer.write(matrix.length +"\r\n");
-        printer.write(matrix[0].length +"\r\n");
-
-        for (int i=0;i<matrix.length;i++){
-            for (int j=0;j<matrix[0].length;j++){
-                printer.write(matrix[i][j]+" ");
-            }
-            printer.write("\r\n");
-        }
-
-        printer.close ();
-    } // end of writeMatrix method
 
 } //close class
