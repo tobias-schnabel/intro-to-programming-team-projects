@@ -34,7 +34,7 @@ public class MultiplyMatrices {
         printMatrix(matrixA);
         System.out.println("Matrix B:" );
         printMatrix(matrixB);
-        System.out.println("Product:" );
+        System.out.println("Matrix A * B:" );
         printMatrix(multiply(matrixA, matrixB));
 
 //    int[][] resultMatrix = multiply(matrixA, matrixB)
