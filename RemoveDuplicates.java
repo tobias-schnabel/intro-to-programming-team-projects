@@ -9,7 +9,7 @@ Write a program RemoveDuplicates that tests your method.*/
 import java.util.*;
 
 public class RemoveDuplicates {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter the size of the array: ");
@@ -26,14 +26,23 @@ public class RemoveDuplicates {
 
     public static int[] removeDuplicates(int[] array){
         int n = array.length;
-        int[] arrayNoDup = new int[n]; //create new array with same length
-        // i loop over indexes of array
-        //nested j loop up to counter, counter +=1` if assign, otherwise not
-            //check equality inside j loop, assign if not equal
+        int[] arrayNoDup = new int[n]; //create new, empty array with same length
+        int counter =0; //counts non-dups in final array (see inner loop)
+        for (int i =0; i < n; i++) {
+            boolean isDup = false; //stores whether number is false for each i
+            for (int j =0; j < counter; j++){ //second running index
+                if (arrayNoDup[j] == array[i]){
+                    isDup = true; //number already contained in return array
+                }
+                } //close inner loop
+            if (isDup ==false) { //if for all j, number only present once, it is assigned in output array
+                arrayNoDup[counter]=array[i];
+                counter++; //ups counter to move to next index in output array
+            }
+            } //close outer loop
 
-
-        int x = 0; // first x numbers TO DO
-        int[] arrayOut = Arrays.copyOf(arrayNoDup, x);
+        int[] arrayOut = Arrays.copyOf(arrayNoDup, counter); //creates return array as trimmed copy of output array
         return arrayOut;
+
     } //close method
 }
