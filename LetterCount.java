@@ -6,8 +6,8 @@ Write a program LetterCount that can determine the percentages
  The program should take as an argument the filename
  of the file containing the words.*/
 
- import java.util.*;
- import java.io.*;
+import java.util.*;
+import java.io.*;
 
 /*Write a program LetterCount that can determine the percentages of
 each letter occurring in a given list of words. The program should take

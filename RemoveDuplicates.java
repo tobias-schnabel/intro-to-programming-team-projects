@@ -43,6 +43,5 @@ public class RemoveDuplicates {
 
         int[] arrayOut = Arrays.copyOf(arrayNoDup, counter); //creates return array as trimmed copy of output array
         return arrayOut;
-
-    } //close method
+    } //close remove duplicates method
 }
