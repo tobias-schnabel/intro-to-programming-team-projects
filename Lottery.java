@@ -49,7 +49,7 @@ public class Lottery {
      */
     public static int[] draw(int numberOfPicks, int maximumNumber){
 
-
+        return null; //stub
     }
 
     /* returns an array that contains in position i the number
@@ -58,7 +58,7 @@ public class Lottery {
      */
     public static int[] determineWinners(int[][] lots, int[] drawnNumbers){
 
-
+        return null;
     }
 
     public static int[][] readLots(String filename)

@@ -21,33 +21,22 @@ public class RemoveDuplicates {
             arrayIn[i] = in.nextInt(); 
         }
         System.out.println("Original Array: " + Arrays.toString(arrayIn));
-        System.out.println("Array without duplicates: " + Arrays.toString(removeDuplicates(arrayIn, n)));
+        System.out.println("Array without duplicates: " + Arrays.toString(removeDuplicates(arrayIn)));
     } //close main
 
-    public static int[] removeDuplicates(int array[], int n) {
+    public static int[] removeDuplicates(int[] array){
+        int n = array.length;
 
-        int arrayTemp[] = new int[n];
-        int j = 0;
 
-       /* for(int i = 0; i < n; i++){
-            for(j = i+1; j < n){
-                if (array[i]==array[j]){
+        int duplicateCounter = 0;
+        for(int i = 0; i < n; i++){
+            for(int j = i+1; j < n; j++){
+                if (array[i] == array[j]){
+                    duplicateCounter += 1;
                 }
             }
-        } */
-
-/*
-        int j = 0;
-        for (int i = 0; i < n-1; i++){
-            if (array[i] != array[i+1]){
-                arrayTemp[j++] = array[i];
-            }
         }
-        arrayTemp[j++] = array[n-1];
-        /*
-        for (int i = 0; i < j; i++){
-            arrayIn[i] = arrayTemp[i];
-        }*/
+        int[] arrayOut = new int[array.length - (duplicateCounter -1 )];
 
         return null; //stub
     } //close method
