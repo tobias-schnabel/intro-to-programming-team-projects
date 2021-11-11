@@ -26,18 +26,14 @@ public class RemoveDuplicates {
 
     public static int[] removeDuplicates(int[] array){
         int n = array.length;
+        int[] arrayNoDup = new int[n]; //create new array with same length
+        // i loop over indexes of array
+        //nested j loop up to counter, counter +=1` if assign, otherwise not
+            //check equality inside j loop, assign if not equal
 
 
-        int duplicateCounter = 0;
-        for(int i = 0; i < n; i++){
-            for(int j = i+1; j < n; j++){
-                if (array[i] == array[j]){
-                    duplicateCounter += 1;
-                }
-            }
-        }
-        int[] arrayOut = new int[array.length - (duplicateCounter -1 )];
-
-        return null; //stub
+        int x = 0; // first x numbers TO DO
+        int[] arrayOut = Arrays.copyOf(arrayNoDup, x);
+        return arrayOut;
     } //close method
 }
