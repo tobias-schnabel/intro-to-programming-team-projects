@@ -35,12 +35,19 @@ public class Lottery {
             e.printStackTrace();
         }
 
-        System.out.print("The drawn numbers are: " + Arrays.toString(draw()));
+        System.out.println("The drawn numbers are: " + Arrays.toString(draw(numberOfPicks, maximumNumber)) );
+
         /* here you should correctly use the two methods below
          * and output for each i from {0,1,2,3,4,5,6) how many lots
          * have had i correctly predicted number
          */
+        int[] drawnNumbers = draw(numberOfPicks, maximumNumber);
+        int[] winningNums = determineWinners(lots, drawnNumbers);
 
+        for (int i=0; i < 7; i++){
+            System.out.println("Lots with " + i + " correct number(s): ");
+            System.out.println(winningNums[i]);
+        }
 
 
     } //close main
@@ -48,12 +55,12 @@ public class Lottery {
     /* returns an array containing numberOfPicks many
      * distinct integers in the range {1,...,maximumNumber}
      */
-    public static int[] draw(){
+    public static int[] draw(int numberOfPicks, int maximumNumber){
             //produces an array of length n containing random integers
             Random random = new Random();
-            int[] array = new int[6];
-            for (int i = 0; i <= 6; i++) {
-                array[i] = 1+ random.nextInt(49); //randomInt bounded below by 0, add 1 to lowerbound 1
+            int[] array = new int[numberOfPicks];
+            for (int i = 0; i < 6; i++) {
+                array[i] = 1+ random.nextInt(maximumNumber); //randomInt bounded below by 0, add 1 to lowerbound 1
             }
             array = removeDuplicates(array);
         if (array.length == 6) {
@@ -71,8 +78,28 @@ public class Lottery {
      * and an array of drawn numbers
      */
     public static int[] determineWinners(int[][] lots, int[] drawnNumbers){
+        int numberOfPicks = 6; //has to be replaced here because given method signature does not allow for passing odf this arg
+        int n = drawnNumbers.length;
 
-        return null;
+        int[] winningArr = new int[7];
+
+        for (int[] lot : lots) {
+            int counts = 0;
+            for (int drawnNumber : drawnNumbers) {
+                for (int k = 0; k < n; k++) {
+                    if (lot[k] == drawnNumber) {
+                        counts += 1;
+                    }
+                } //close innermost loop
+            } //close inner loop
+            for (int x = 0; x < numberOfPicks; x++) {
+                if (counts == x) {
+                    winningArr[x]++;
+                }
+            } //close outer loop
+
+        }
+        return winningArr;
     }
 
     public static int[][] readLots(String filename)
@@ -113,6 +140,8 @@ public class Lottery {
 
         return Arrays.copyOf(arrayNoDup, counter);
     } //close remove duplicates method
+
+
 
 
 } //close class
