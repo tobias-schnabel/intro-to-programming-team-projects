@@ -25,6 +25,7 @@ public class MinAbsoluteValue {
         int n = in.nextInt();   //length of input array
         int[] array = new int[n]; //init array
         array = randomIntArray(n);
+        Arrays.sort(array);
             //runtime check
             double startTime1 = System.currentTimeMillis();
             int minValue1 = minAbsoluteValueLinear(array);
@@ -38,7 +39,7 @@ public class MinAbsoluteValue {
 
         System.out.println("Algorithm 1 took " + (totalTime1) + " milliseconds.");
         System.out.println("Algorithm 2 took " + (totalTime2) + " milliseconds.");
-        System.out.println("To verify: \n Random Array: " + Arrays.toString(array) + "\n Min Linear Method: " + minValue1 + "\n Min Binary Method: " +minValue2);
+        System.out.println("To verify: \n Random Array: " + Arrays.toString(array) + "\n Abs Min Linear Method: " + minValue1 + "\n Abs Min Binary Method: " +minValue2);
 
 
     } //close main
@@ -47,7 +48,7 @@ public class MinAbsoluteValue {
         int minValue = array[0];
         for (int i = 0; i < array.length; i++) {
             if (Math.abs(array[i]) < Math.abs(minValue) ) {
-                minValue = array[i];
+                minValue = Math.abs(array[i]);
             }
         }
         return minValue;
@@ -80,6 +81,25 @@ public class MinAbsoluteValue {
                 array[i] = random.nextInt();
             }
             return array;
-        }
+        } //close method
 
+    public static int min(int[] array){
+        int min = int.POSITIVE_INFINITY;
+        for(int i=0; i< array.length; i++){
+            if (array[i] < min){
+                min = array[i];
+            }
+        }
+        return min;
+    } //close method
+
+    public static int max(int[] array){
+        int max = int.NEGATIVE_INFINITY;
+        for(int i=0; i< array.length; i++){
+            if (array[i] > max){
+                max = array[i];
+            }
+        }
+        return max;
+    } //close method
 } // closeclass
