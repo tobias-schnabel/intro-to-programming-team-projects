@@ -17,4 +17,34 @@ import java.io.*;
 import java.util.Arrays;
 
 public class MinAbsoluteValue {
-}
+
+
+    public static int minAbsoluteValueLinear(int[] array) {
+        int minValue = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (Math.abs(array[i]) < Math.abs(minValue) ) {
+                minValue = array[i];
+            }
+        }
+        return minValue;
+    } //close method
+
+    public static int minAbsoluteValueBinary(int[] array) {
+        int minValue = 0;
+        int low = 0;
+        int high = array.length -1;
+        while (low+1 < high ) {
+            int mid = (high + low) /2;
+
+            if (Math.abs(array[mid]) < Math.abs(minValue) ) {
+                minValue = array[mid];
+            } else if (Math.abs(array[mid]) == Math.abs(minValue)){
+                break;
+            } else if (Math.abs(array[mid]) > Math.abs(minValue)) {
+                low = mid;
+            }
+
+        return minValue;
+    } //close method
+
+} // closeclass
