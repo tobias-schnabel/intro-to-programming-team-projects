@@ -55,23 +55,23 @@ public class MinAbsoluteValue {
     } //close method
 
     public static int minAbsoluteValueBinary(int[] array) {
-        int minValue = array[0];
         int low = 0;
-        int high = array.length -1;
-        while (low+1 < high ) {
-            int mid = (high + low) / 2;
+        int high = array.length-1;
 
-            if (Math.abs(array[mid]) < Math.abs(minValue)) {
-                minValue = array[mid];
-            } else if (Math.abs(array[mid]) == Math.abs(minValue)) {
-                break;
-            } else if (Math.abs(array[mid]) > Math.abs(minValue)) {
+        while (array[low + 1] != array[high]){
+            int mid = (high + low)/2;
+
+            if (Math.abs(array[mid]) <= Math.abs(array[mid + 1])){
+                high = mid;
+            }
+            else if (Math.abs(array[mid]) > Math.abs(array[mid + 1])){
                 low = mid;
             }
-        }
+        }//close while
 
-        return minValue;
-    } //close method
+        return Math.min(Math.abs(array[high]), Math.abs(array[low]));
+
+    }//close minAbsoluteValueBinary
 
         // returns an array of length n containing random double values
         public static int[] randomIntArray(int n){
@@ -83,23 +83,5 @@ public class MinAbsoluteValue {
             return array;
         } //close method
 
-    public static int min(int[] array){
-        int min = int.POSITIVE_INFINITY;
-        for(int i=0; i< array.length; i++){
-            if (array[i] < min){
-                min = array[i];
-            }
-        }
-        return min;
-    } //close method
 
-    public static int max(int[] array){
-        int max = int.NEGATIVE_INFINITY;
-        for(int i=0; i< array.length; i++){
-            if (array[i] > max){
-                max = array[i];
-            }
-        }
-        return max;
-    } //close method
-} // closeclass
+} // close class
