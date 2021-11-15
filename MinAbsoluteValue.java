@@ -13,7 +13,6 @@
 
 import java.util.Random;
 import java.util.Scanner;
-import java.io.*;
 import java.util.Arrays;
 
 public class MinAbsoluteValue {
@@ -23,7 +22,7 @@ public class MinAbsoluteValue {
 
         System.out.print("Enter the size of the array: ");
         int n = in.nextInt();   //length of input array
-        int[] array = new int[n]; //init array
+        int[] array; //init array
         array = randomIntArray(n);
         Arrays.sort(array);
             //runtime check
@@ -46,9 +45,9 @@ public class MinAbsoluteValue {
 
     public static int minAbsoluteValueLinear(int[] array) {
         int minValue = array[0];
-        for (int i = 0; i < array.length; i++) {
-            if (Math.abs(array[i]) < Math.abs(minValue) ) {
-                minValue = Math.abs(array[i]);
+        for (int j : array) {
+            if (Math.abs(j) < Math.abs(minValue)) {
+                minValue = Math.abs(j);
             }
         }
         return minValue;
