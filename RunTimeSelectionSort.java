@@ -12,7 +12,6 @@ public class RunTimeSelectionSort{
 
     public static void main(String[] args){
 
-        System.out.print("Enter the length of the array: ");
         System.out.print("Enter the size of the array: ");
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
@@ -63,4 +62,5 @@ public class RunTimeSelectionSort{
         System.out.println("Sorted array: " + Arrays.toString(array));
 
     }//close method
-}
+    
+}//close class
