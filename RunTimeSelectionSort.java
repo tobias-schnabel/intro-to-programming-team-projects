@@ -1,5 +1,5 @@
 /* RunTimeSelectionSort.java
-Authors: 
+Authors: nunya
 
 Write a method selectionSort of return type void that takes one integer array 
 as a parameter and sorts the values in the array using the selection sort algorithm 
@@ -19,7 +19,7 @@ public class RunTimeSelectionSort{
         int[] array = randomIntArray(n);
         System.out.println("Unsorted array: " + Arrays.toString(array));
 
-        RunTimeSelectionSort(array);
+        RunTimeSelectionSort(array); //calls runtime method
 
     }//close main
 
@@ -37,7 +37,7 @@ public class RunTimeSelectionSort{
     public static void RunTimeSelectionSort(int[] array){
 
         double startTime = System.currentTimeMillis();
-        selectionSort(array);
+        selectionSort(array);//calls the method
         double endTime = System.currentTimeMillis();
         double totalTime = endTime - startTime;     //calculates the run time of method selectionSort
         
