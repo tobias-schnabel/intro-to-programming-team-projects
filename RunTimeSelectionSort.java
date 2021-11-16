@@ -49,18 +49,18 @@ public class RunTimeSelectionSort{
 
         for(int i = 0; i < array.length-1; i++){
             int minIndex = i;             //index of smallest element in array[i...n]
-            for(int j = i+1; j < array.length; j++){
-                if (array[j] < array[minIndex]){
-                    minIndex = j;         //sets the index of the smallest array value to j
+            for(int j = i+1; j < array.length; j++){ //traversing array
+                if (array[j] < array[minIndex]){ //sets the index of the smallest array value to j
+                    minIndex = j;         
                 }
             }//close inner loop
             int temp = array[minIndex];   //temporary variable to store minimal array value while swapping
-            array[minIndex] = array[i];
+            array[minIndex] = array[i];   //swap smallest array element to the front of the array
             array[i] = temp;
         }//close loop
         
         System.out.println("Sorted array: " + Arrays.toString(array));
 
     }//close method
-    
+
 }//close class
