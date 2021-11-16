@@ -74,12 +74,11 @@ public class RunTimesIntPalindrome {
         }//close loop
 
         for (int i = 0; i < arrayLength-1; i++){
-            if(array[i] == array[arrayLength-1-i]){
-                isPalindrome = true;
+            if(array[i] != array[arrayLength-1-i]){
+                isPalindrome = false;
             }
-            else {isPalindrome = false;  
-            break; //breaks loop in case elements are not matching 
-            }
+            else break; //breaks loop in case elements are not matching 
+            
         }//close loop  
         return isPalindrome; 
 
