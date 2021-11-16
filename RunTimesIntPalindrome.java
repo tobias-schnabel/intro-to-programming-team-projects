@@ -69,19 +69,18 @@ public class RunTimesIntPalindrome {
 
         while(n != 0){  //converts n into an array of its digits
             array[arrayLength-j-1] = n % 10;
-            n =n/10;
-            j++;
+            n =n/10; //shortens number to next digit
+            j++; //increases placeholder to move to next array index
         }//close loop
 
         for (int i = 0; i < arrayLength-1; i++){
             if(array[i] != array[arrayLength-1-i]){
-                isPalindrome = false;
-            }
-            else break; //breaks loop in case elements are not matching 
+                isPalindrome = false; //compares elements from opposite directions and sets to false if unequal
+                break; //breaks loop in case elements are not matching
+            } //close if
             
         }//close loop  
-        return isPalindrome; 
-
+        return isPalindrome;
     }//close method
 
 }//close class
