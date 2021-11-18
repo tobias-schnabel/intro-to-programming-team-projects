@@ -50,6 +50,11 @@ public class RunTimesIntPalindrome {
         System.out.println("");
         System.out.println("For " + n + " tries, isIntPalindromeSmart took in total " + runTime2 + " milliseconds.");
         System.out.println("For " + n + " tries, isIntPalindromeSmart took on  average " + runTime2/n + " milliseconds.");
+        System.out.println("");
+        System.out.println("Validation:");
+        System.out.println("For the palindrome number 1435341, the Smart Method returns: " + isIntPalindromeSmart(1435341));
+        System.out.println("And for the same palindrome number, the Long Method returns: " + isIntPalindromeLong(1435341));
+
 
     }//close main
 
@@ -72,27 +77,24 @@ public class RunTimesIntPalindrome {
     }//close method
 
     public static boolean isIntPalindromeSmart(int n){
-
-        int arrayLength = (int) Math.log10(n) + 1;  //define array length (hint)
-        int[] array  = new int[arrayLength];        //init array
-        int j = 0;                                  //init j
-        boolean isPalindrome = true;
-
-        while(n != 0){  //converts n into an array of its digits
-            array[arrayLength-j-1] = n % 10;
-            n =n/10; //shortens number to next digit
-            j++; //increases placeholder to move to next array index
-        }//close loop
-
-        for (int i = 0; i < arrayLength-1; i++){
-            if(array[i] != array[arrayLength-1-i]){
-                isPalindrome = false; //compares elements from opposite directions and sets to false if unequal
-                break; //breaks loop in case elements are not matching
-            } //close if
-            
-        }//close loop  
+        int intLength = (int) Math.log10(n) + 1; //# digits
+        boolean isPalindrome = true; //initialize return var
+        int i =0; //loop index
+        while (i < intLength ) {
+            int lastDigit = n % 10;
+            int firstDigit = n / (int) Math.pow(10, intLength-1);
+            if (lastDigit != firstDigit) {
+                isPalindrome = false;
+                break;
+            } else {
+                n = n / 10; //take out last digit
+                n = n / (int) Math.pow(10, intLength -1); //take out first digit
+                intLength -= 2; //shorten # digits by 2
+                i++;
+            }
+        } //close loop
         return isPalindrome;
-    }//close method
+    } //close method
 
 }//close class
 
