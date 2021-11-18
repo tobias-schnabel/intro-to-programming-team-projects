@@ -65,11 +65,12 @@ public class RunTimesKnapsack {
         for (int v = 0; v <= volumeBound; v++){
             if (i == 0 || v == 0) { //base case
                 returnArray[i][v] = 0;
-            } else if (volumeArr[i-1] <= volumeBound) {
+            } else if (volumeArr[i-1] <= v) {
                 returnArray[i][v] = Math.max((profitArr[i-1] + returnArray[i-1][(v - volumeArr[i-1])]), returnArray[i-1][v]);
+            } else {
+                returnArray[i][v] = returnArray[i-1][v];
             }
-            returnArray[0][v] = 0; }
-
+        } //close inner for
             } //close outer for
     return returnArray[n][volumeBound];
 
