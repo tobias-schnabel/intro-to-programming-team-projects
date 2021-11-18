@@ -33,7 +33,7 @@ public class RunTimesIntPalindrome {
         double runTime2 = 0;
 
         for(int i = 0; i < n; i++) {
-            int k = rand.nextInt();
+            int k = Math.abs(rand.nextInt()); //methods only work with positive integer input
             double startTime1 = System.currentTimeMillis();
             isIntPalindromeLong(k);
             double endTime1 = System.currentTimeMillis();
@@ -47,7 +47,7 @@ public class RunTimesIntPalindrome {
 
         System.out.println("For " + n + " tries, isIntPalindromeLong took in total " + runTime1 + " milliseconds.");
         System.out.println("For " + n + " tries, isIntPalindromeLong took on  average " + runTime1/n + " milliseconds.");
-
+        System.out.println("");
         System.out.println("For " + n + " tries, isIntPalindromeSmart took in total " + runTime2 + " milliseconds.");
         System.out.println("For " + n + " tries, isIntPalindromeSmart took on  average " + runTime2/n + " milliseconds.");
 
