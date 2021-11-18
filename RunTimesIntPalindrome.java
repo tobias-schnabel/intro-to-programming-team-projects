@@ -23,22 +23,33 @@ import java.lang.Math;
 public class RunTimesIntPalindrome {
     public static void main(String[] args) {
 
-        System.out.print("Enter a positive integer n = ");
+        System.out.print("Enter how many iterations you would like to test the methods on: ");
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
 
-        double startTime1 = System.currentTimeMillis();
-        System.out.println("isIntPalindromeLong: " + isIntPalindromeLong(n));
-        double endTime1 = System.currentTimeMillis();
-        double totalTime1 = endTime1 - startTime1;  //calculates the run time of method isIntPalindromeLong
+        Random rand = new Random();
 
-        double startTime2 = System.currentTimeMillis();
-        System.out.println("isIntPalindromeSmart: " + isIntPalindromeSmart(n));
-        double endTime2 = System.currentTimeMillis();
-        double totalTime2 = endTime2 - startTime2;  //calculates the run time of method isIntPalindromeSmart
+        double runTime1 = 0;
+        double runTime2 = 0;
 
-        System.out.println("The method isIntPalindromeLong took " + totalTime1 + " milliseconds to complete.");
-        System.out.println("The method isIntPalindromeSmart took " + totalTime2 + " milliseconds to complete.");
+        for(int i = 0; i < n; i++) {
+            int k = rand.nextInt();
+            double startTime1 = System.currentTimeMillis();
+            isIntPalindromeLong(k);
+            double endTime1 = System.currentTimeMillis();
+            runTime1 += (endTime1 - startTime1);
+
+            double startTime2 = System.currentTimeMillis();
+            isIntPalindromeSmart(n);
+            double endTime2 = System.currentTimeMillis();
+            runTime2 += (endTime2 - startTime2);
+        }
+
+        System.out.println("For " + n + " tries, isIntPalindromeLong took in total " + runTime1 + " milliseconds.");
+        System.out.println("For " + n + " tries, isIntPalindromeLong took on  average " + runTime1/n + " milliseconds.");
+
+        System.out.println("For " + n + " tries, isIntPalindromeSmart took in total " + runTime2 + " milliseconds.");
+        System.out.println("For " + n + " tries, isIntPalindromeSmart took on  average " + runTime2/n + " milliseconds.");
 
     }//close main
 
