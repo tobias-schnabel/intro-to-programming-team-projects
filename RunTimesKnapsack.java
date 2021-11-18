@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class RunTimesKnapsack {
 
     public static void main(String[] args) {
-// to add in main:
+        // get user input for knapsack algo
         Scanner in = new Scanner(System.in);
         System.out.print("Enter the number of items: ");
         System.out.println(" ");
@@ -52,48 +52,50 @@ public class RunTimesKnapsack {
         double totalTime = endTime - startTime;
 
         System.out.println("The method took " + totalTime + " milliseconds to complete.");
-        //user input: # items, respective volumes, knapsack volume
-        //final output
-        //call method
 
+        //get input for runtime test method
+        System.out.println("Please input an integer upper bound on volume and profit of an individual item:");
+        int upperBound = in.nextInt();
+        System.out.println("Please input an integer lower bound on volume and profit of an individual item:");
+        int lowerBound = in.nextInt();
+        System.out.println("Please input how many times you would like to test the method: ");
+        int iterations = in.nextInt();
+
+        //call runtime test method
+        int[] array = new int[3] //total time, average time ??
     } //close main
+
+    public static int[] runtTimeTest ()
+
+            //generates arrays of length n filled with nonnegative Integers between two bounds
+    public static int[] randomPosArr(int n, int l, int u){
+        Random random = new Random();
+        int[] array = new int[n];
+
+        for(int i=0; i < n; i++){
+            array[i] = Math.abs(random.nextInt(u-l+1) + l);
+        }
+
+        return (array);
+
+    }//close method
 
     public static int KnapsackOptimize(int[] profitArr, int[] volumeArr, int volumeBound){
         int n = profitArr.length; //number of items is same as # elements in profit array
         int[][] returnArray = new int[(n + 1)][(volumeBound + 1)]; //creates return array with dims [n+1] [V+1]
         for (int i = 1; i <= n; i++) {
         for (int v = 0; v <= volumeBound; v++){
-            if (i == 0 || v == 0) { //base case
-                returnArray[i][v] = 0;
-            } else if (volumeArr[i-1] <= v) {
+            if (i == 0 || v == 0) {
+                returnArray[i][v] = 0; //base case
+            } else if (volumeArr[i-1] <= v) { //if we include item
                 returnArray[i][v] = Math.max((profitArr[i-1] + returnArray[i-1][(v - volumeArr[i-1])]), returnArray[i-1][v]);
-            } else {
+            } else { //if we do not include the item
                 returnArray[i][v] = returnArray[i-1][v];
             }
-        } //close inner for
+                } //close inner for
             } //close outer for
+
     return returnArray[n][volumeBound];
 
-//        int[][] matrix = new int[lengthArray+1][capacity+1];
-//
-//        for (int i = 0; i <= lengthArray; i++) {
-//            for (int v = 0; v <= capacity; v++) {
-//                if (i == 0 || v == 0){ //base case in recursive method.
-//                    matrix[i][v] = 0;
-//                }
-//                else if (volumeI[i-1] <= v){ //if the volume of the i-th item is less than V.
-//                    matrix[i][v] = Math.max(profitI[i-1] + matrix[i-1][v - volumeI[i-1]], matrix[i-1][v]);
-//                }
-//                //first part is if you decide to include the element in the knapsack.
-//                //Second part is if you do not decide to include the element in the knapSack.
-//                //Note that max method should still be defined.
-//
-//                else{
-//                    matrix[i][v] = matrix[i-1][v]; //if the volume of the i-th item is more than the V, then it cannot be included.
-//                }
-//            } //close inner loop
-//        } //close outer loop
-//
-//        return matrix[lengthArray][capacity];
     } //close method
 } //close class
