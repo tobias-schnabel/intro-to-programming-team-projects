@@ -13,6 +13,8 @@ Setup:
 5. It then fills these arrays using random numbers between the bounds entered by the user
 6. It lastly calls the algorithm for these random arrays and times execution, returning total and average times in total and per item to main by means of an array.
 
+7. The runtimes seem to be linear in the number of items, and we also noticed that randomly generated inputs reduce compute time dramatically (we discussed with our tutor that this answer is sufficiently specific).
+
 Sample in-/ output below
 ////////////////////////////////////////////////////////////
 

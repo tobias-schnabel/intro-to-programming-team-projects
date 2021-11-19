@@ -8,6 +8,7 @@
 3. In each iteration, we generate a random Integer >0 using the base java random method
 4. We then call both methods on this same integer and tally their runtimes separately
 5. For sufficiently large numbers (say 100.000 or higher), as we generate 100.000+ random integers, we can be reasonably sure (by the laws of probability) that many different lengths of integers / magnitudes will be tested
+6. The runtimes seem to be linear for the long method and slower but also linear for the smart method (we discussed with our tutor that this answer is sufficiently specific)
 
 OUTPUT:
 ****************
