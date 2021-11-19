@@ -12,15 +12,15 @@ public class RunTimeSelectionSort{
 
     public static void main(String[] args){
 
-        System.out.print("Enter the size of the array: ");
+        System.out.print("Enter the size of the arrays: ");
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
+        System.out.print("Enter how often you would like to iterate the method: ");
+        int iterations = in.nextInt();
+        System.out.println(" ");
 
-        int[] array = randomIntArray(n);
-        System.out.println("Unsorted array: " + Arrays.toString(array));
-
-        RunTimeSelectionSort(array); //calls runtime method
-
+        RunTimeSelectionSort(n, iterations); //calls runtime method
+        
     }//close main
 
     public static int[] randomIntArray(int n){
@@ -34,15 +34,21 @@ public class RunTimeSelectionSort{
 
     }//close method
 
-    public static void RunTimeSelectionSort(int[] array){
-
-        double startTime = System.currentTimeMillis();
-        selectionSort(array);//calls the method
-        double endTime = System.currentTimeMillis();
-        double totalTime = endTime - startTime;     //calculates the run time of method selectionSort
+    public static void RunTimeSelectionSort(int n, int iterations){
         
-        System.out.println("The method took " + totalTime + " milliseconds to complete.");
-
+        double runTime = 0;
+        for (int i = 0; i <= iterations; i++){  //iterates selectionSort 
+            double startTime = System.currentTimeMillis();
+            selectionSort(randomIntArray(n));//calls the method for a random int array of size n
+            double endTime = System.currentTimeMillis();
+            runTime += endTime - startTime;     //calculates the total run time of method selectionSort
+        }
+        
+        System.out.println("For " + iterations + " iterations with arrays of size "+ n + ":");
+        System.out.println(" ");
+        System.out.println("The method took in total " + runTime + " milliseconds to complete.");
+        System.out.println("The method took on average " + runTime/iterations + " milliseconds per iteration.");
+        
     }//close method
 
     public static void selectionSort(int[] array){
@@ -59,7 +65,7 @@ public class RunTimeSelectionSort{
             array[i] = temp;
         }//close loop
         
-        System.out.println("Sorted array: " + Arrays.toString(array));
+        //System.out.println("Sorted array: " + Arrays.toString(array));
 
     }//close method
 
