@@ -9,13 +9,12 @@
 
         Given are n items with p roﬁts p i and volumes v i as well as a kna p sack of volume V .
 
-Which items should be p acked in the kna p sack as to maximize their total p roﬁts, while still having
+Which items should be p acked in the kna p sack as to maximize their total proﬁts, while still having
  total volume at most V ?
  */
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class RunTimesKnapsack {
 
@@ -30,7 +29,7 @@ public class RunTimesKnapsack {
         int[] volumeArr = new int[n];
 
        // fill profit array
-        for(int i = 0; i < n; i++){ //constructs an array of lenght n by means of user input
+        for(int i = 0; i < n; i++){ //constructs an array of length n by means of user input
             System.out.printf("Enter the profit of item %d: ", i+1);
             profitArr[i] = in.nextInt();
         }
@@ -47,25 +46,63 @@ public class RunTimesKnapsack {
         System.out.println(" ");
 
         double startTime = System.currentTimeMillis();
-        System.out.println("Given the constraints, the maximum profit equals " + KnapsackOptimize(profitArr, volumeArr, volumeBound));
+        System.out.println("Given the constraints, the maximum profit equals " + knapsackOptimize(profitArr, volumeArr, volumeBound));
         double endTime = System.currentTimeMillis();
         double totalTime = endTime - startTime;
 
         System.out.println("The method took " + totalTime + " milliseconds to complete.");
 
         //get input for runtime test method
-        System.out.println("Please input an integer upper bound on volume and profit of an individual item:");
-        int upperBound = in.nextInt();
-        System.out.println("Please input an integer lower bound on volume and profit of an individual item:");
+        System.out.println(""); //blank line
+        System.out.println("Please input a nonnegative integer lower bound > 0 on volume and profit of an individual item:");
         int lowerBound = in.nextInt();
+        System.out.println("Please input a positive integer upper bound on volume and profit of an individual item:");
+        int upperBound = in.nextInt();
         System.out.println("Please input how many times you would like to test the method: ");
         int iterations = in.nextInt();
 
         //call runtime test method
-        int[] array = new int[3] //total time, average time ??
+        double[] array; //declare
+        array = runtTimeTest(lowerBound, upperBound, iterations);
+        System.out.println("The method was executed " + (int) array[0] + " times.");
+        System.out.println("For each execution, we generated two arrays of random length up to 100.");
+        System.out.println("We then populated these volume and profit arrays of the same length with random numbers between the bounds specified by you and exectued the method on them.\n");
+        System.out.println("The method took " + array[1] + " milliseconds in total.");
+        System.out.println("The method took " + array[2] + " milliseconds on average.");
+        System.out.println("The method took on average " + array[3] + " milliseconds per item.");
     } //close main
 
-    public static int[] runtTimeTest ()
+        //method takes upper and lower bound and # iterations
+    //then iterates n time, generating random volume and profit arrays each and calling the method
+    public static double[] runtTimeTest (int l, int u, int n) {
+        Random random = new Random(); //init random
+
+        double totaltime = 0; //init timing var
+        double timePerLength = 0;
+        double[] returnArray = new double[4]; //init return array
+
+        for (int i = 0; i < n; i++){
+            int arraylength = random.nextInt(100); //generates random length of volume and profit arrays
+            int[] volArr; //declares volume array
+                  volArr =   randomPosArr(arraylength, l, u); //populates volume arr
+            int[] profArr; //declares profit array
+            profArr =   randomPosArr(arraylength, l, u); //populates profit arr
+            int volBound = random.nextInt(u);
+            double starttime = System.currentTimeMillis();
+            int solution = knapsackOptimize(profArr, volArr, volBound); //call method
+            double endtime = System.currentTimeMillis();
+            totaltime += (endtime - starttime);
+            timePerLength += ((endtime - starttime) / arraylength); //computation time per item
+
+        } //close for
+
+        returnArray[0] = n;
+        returnArray[1] = totaltime;
+        returnArray[2] = totaltime / n; //average time
+        returnArray[3] = timePerLength/n ; //total compute time per item
+
+        return returnArray;
+    }
 
             //generates arrays of length n filled with nonnegative Integers between two bounds
     public static int[] randomPosArr(int n, int l, int u){
@@ -80,7 +117,7 @@ public class RunTimesKnapsack {
 
     }//close method
 
-    public static int KnapsackOptimize(int[] profitArr, int[] volumeArr, int volumeBound){
+    public static int knapsackOptimize(int[] profitArr, int[] volumeArr, int volumeBound){
         int n = profitArr.length; //number of items is same as # elements in profit array
         int[][] returnArray = new int[(n + 1)][(volumeBound + 1)]; //creates return array with dims [n+1] [V+1]
         for (int i = 1; i <= n; i++) {
