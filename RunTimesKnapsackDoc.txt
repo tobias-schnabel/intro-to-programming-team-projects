@@ -13,6 +13,8 @@ Setup:
 5. It then fills these arrays using random numbers between the bounds entered by the user
 6. It lastly calls the algorithm for these random arrays and times execution, returning total and average times in total and per item to main by means of an array.
 
+Sample in-/ output below
+////////////////////////////////////////////////////////////
 
 RunTimesKnapsack 3
 Enter the number of items:  
