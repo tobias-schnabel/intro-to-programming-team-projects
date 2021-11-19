@@ -1,0 +1,47 @@
+
+/*RunTimesKnapsack.java
+        Authors: Dohmen, RJH (i6250494)
+        Schnabel, CT (i6255807)
+
+Setup: 
+
+1. Our method takes manual input and returns a solution by our implementation of the algorithm shown in the lecture.
+2. We then ask the user to input 2 integers that serve as lower and upper bounds on volume and profit
+3. We also ask for a number of times n the user would like to test the method.
+
+4. The RunTimeTest method generates for each iteration up to n two empty arrays with a random length of up to 100.
+5. It then fills these arrays using random numbers between the bounds entered by the user
+6. It lastly calls the algorithm for these random arrays and times execution, returning total and average times in total and per item to main by means of an array.
+
+
+RunTimesKnapsack 3
+Enter the number of items:  
+3
+Enter the profit of item 1: 7
+Enter the profit of item 2: 8
+Enter the profit of item 3: 9
+ 
+Enter the volume of item 1: 1
+Enter the volume of item 2: 2
+Enter the volume of item 3: 3
+ 
+Enter the volume bound: 4
+ 
+Given the constraints, the maximum profit equals 16
+The method took 16.0 milliseconds to complete.
+
+Please input a nonnegative integer lower bound > 0 on volume and profit of an individual item:
+1
+Please input a positive integer upper bound on volume and profit of an individual item:
+100
+Please input how many times you would like to test the method: 
+50
+The method was executed 50 times.
+For each execution, we generated two arrays of random length up to 100.
+We then populated these volume and profit arrays of the same length with random numbers between the bounds specified by you and exectued the method on them.
+
+The method took 9.0 milliseconds in total.
+The method took 0.18 milliseconds on average.
+The method took on average 0.00269416187352102 milliseconds per item.
+
+Process finished with exit code 0
