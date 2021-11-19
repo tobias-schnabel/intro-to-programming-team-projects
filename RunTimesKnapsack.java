@@ -7,9 +7,9 @@
         Experimentally analyse the runtime of the algorithm depending on the number of items
         of the instance as well as on the volume bound.
 
-        Given are n items with p roﬁts p i and volumes v i as well as a kna p sack of volume V .
+        Given are n items with proﬁts pi and volumes vi as well as a knapsack of volume V .
 
-Which items should be p acked in the kna p sack as to maximize their total proﬁts, while still having
+Which items should be packed in the knapsack as to maximize their total proﬁts, while still having
  total volume at most V ?
  */
 
@@ -22,8 +22,8 @@ public class RunTimesKnapsack {
         // get user input for knapsack algo
         Scanner in = new Scanner(System.in);
         System.out.print("Enter the number of items: ");
-        System.out.println(" ");
         int n = in.nextInt();  // item # is n
+        System.out.println(" ");
 
         int[] profitArr = new int[n];
         int[] volumeArr = new int[n];
