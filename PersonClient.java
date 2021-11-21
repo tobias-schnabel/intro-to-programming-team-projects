@@ -7,7 +7,11 @@
   public class PersonClient { 
     
     public static void main(String[] args) { 
-      
+      //create test person instance to test BMI method
+      Person tobias = new Person("Tobias", "Schnabel", 23, 200, 90);
+      System.out.println(tobias);
+      System.out.println(tobias.bmi() + "\n");
+
       // create a new Person instance
       Person andre = new Person("Andre", "Berger", 43, 180);
       System.out.println(andre);
