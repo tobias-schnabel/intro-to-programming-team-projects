@@ -20,7 +20,7 @@ public class Person {
     this.height = height;
   }
 
-  // second (overoaded) constructor with additional weight arg
+  // second (overloaded) constructor with additional weight arg
   public Person(String firstName, String lastName, int age, int height, int weight){
     this.firstName = firstName;
     this.lastName = lastName;
