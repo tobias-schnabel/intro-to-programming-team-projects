@@ -36,18 +36,58 @@ public class PersonSort{
          if (criterion == 0){
             quit = true;
          }
-         else {
-         
-		// TO DO
-		// sort personList according to criterion
-
-		// output personList
-
+         else if (criterion == 1){ // first name
+            letterSort(personList.getFirstName());
          }
-      
-      } while (!quit); 
-                
+         else if (criterion == 2){ // last name
+            letterSort(personList.getLastName());
+         }
+         else if (criterion == 3){ // age
+            numberSort(personList.getAge());
+         }
+         else if (criterion == 4){ // height
+            numberSort(personListist.getHeight());
+         }
+      }
+       while (!quit); 
+
+       // TO DO
+       // sort personList according to criterion
+ 
+       // output personList     
      
+   }
+
+   public static void letterSort(String[] array){ // alphabetical selection sort algorithm
+            
+      String temp;  //temporary string to store array value while swapping
+      for(int i = 0; i < array.length; i++){
+         for(int j = i+1; j < array.length; j++){
+            if(array[i].compareTo(array[j])>0){
+               temp = array[i];
+               array[i]=array[j];
+               array[j]=temp;
+            }
+         }
+      }
+      System.out.print("Sorted: " + Arrays.toString(array));
+      }
+      
+
+   public static void numberSort(int[] array){  //selection sort algorithm
+
+      for(int i = 0; i < array.length-1; i++){
+         int minIndex = i;             //index of smallest element in array[i...n]
+         for(int j = i+1; j < array.length; j++){ //traversing array
+             if (array[j] < array[minIndex]){ //sets the index of the smallest array value to j
+                 minIndex = j;         
+             }
+         }//close inner loop
+         int temp = array[minIndex];   //temporary variable to store minimal array value while swapping
+         array[minIndex] = array[i];   //swap smallest array element to the front of the array
+         array[i] = temp;
+     }//close loop
+     System.out.print("Sorted: " + Arrays.toString(array));
    }
    
    // method that reads a list of persons from a file and returns an array of persons
