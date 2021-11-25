@@ -1,6 +1,6 @@
 /* File: PersonSort.java
- * Author: Andre Berger
- *   
+ Authors: Dohmen, RJH (i6250494)
+         Schnabel, CT (i6255807)
  * Implements methods to sort person lists.
  */
 
@@ -76,7 +76,6 @@ public class PersonSort{
    
    
 }
-
 
 
 
