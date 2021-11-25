@@ -12,13 +12,15 @@ public class DateClient{
     Date end = new Date(31,12,2020);
 
     // insert code to display all dates from "begin" to "end" on the screen
-    while (! begin.isEqual(end)) {
+    if (!begin.isBefore(end)){
+      System.out.println("Please enter a Begin date before the End date.");
+      return;
+    }
+    while (!begin.isEqual(end)) {
       System.out.print(begin);
       begin.increment();
       }
     System.out.print(end);
-
-
   }
 
 }

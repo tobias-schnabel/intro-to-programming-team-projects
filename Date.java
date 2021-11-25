@@ -52,12 +52,12 @@ public class Date{
      this.day += 1;
     } else if(this.month == 2 && this.day < 29 && this.isLeapYear()){
      this.day+=1;
-    } else if(this.month == 2 && !this.isLeapYear() && this.day == 28){
-     this.day-=27;
-     this.month+=1;
-    } else if (this.month == 2 && this.isLeapYear() && this.day == 29) {
-    this.day-=28;
-    this.month+=1;
+    } else if((this.month == 2) && this.isLeapYear() && (this.day == 28)) {
+  this.day += 1;
+ } else if (this.month == 2 && this.isLeapYear() && this.day == 29) {
+     this.day -= 28;
+     this.month += 1;
+
     } else if (this.month == 1 || this.month == 3 || this.month == 5 || this.month == 7 //case for months of 31 days
             || this.month == 8 || this.month == 10 || this.month == 12) {
      if (this.day <= 30) {
@@ -84,11 +84,8 @@ public class Date{
    // method that returns true if the year of this date is a leap year
    private boolean isLeapYear(){
 
-      if (this.year % 4 == 0 && this.year % 100 == 0 && this.year %400 != 0) { //leap years are divisible by 4 and 100, not divisible by 400
-       return true;
-      } else {
-       return false;
-      }
+    //leap years are divisible by 4
+    return this.year % 4 == 0;
        } //close method
 
 }
