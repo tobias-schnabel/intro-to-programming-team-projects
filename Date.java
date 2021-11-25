@@ -1,5 +1,5 @@
 /* File:  Date.java
- *  Authors:    Authors: Dohmen, RJH (i6250494)
+ *  Authors: Dohmen, RJH (i6250494)
          Schnabel, CT (i6255807)
  *
  *  Implements several methods for the class Date.

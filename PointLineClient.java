@@ -1,10 +1,10 @@
 /* File:  PointLineClient.java
- * Author:    Andre Berger
- *   
+Authors: Dohmen, RJH (i6250494)
+         Schnabel, CT (i6255807)
  * Tests several methods for the classes Point and Line
  */
 
-import java.awt.Point;
+
  
 public class PointLineClient{
   
