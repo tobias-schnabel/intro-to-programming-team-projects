@@ -25,7 +25,7 @@ public class PersonSort{
       
       Scanner input = new Scanner(System.in);
       boolean quit = false;
-      
+      int numberOfPersons = personList.length;
       
       do{
          System.out.println();     
@@ -33,62 +33,83 @@ public class PersonSort{
       
          int criterion = input.nextInt();
       
-         if (criterion == 0){
+         if (criterion == 0){ //quit
             quit = true;
          }
          else if (criterion == 1){ // first name
-            letterSort(personList.getFirstName());
+            String[] firstNames = new String[numberOfPersons];
+            for(int i = 0; i < numberOfPersons; i++){
+               firstNames[i] = personList[i].getFirstName();
+            }
+            letterSort(firstNames); // invokes letterSort method for first names
          }
          else if (criterion == 2){ // last name
-            letterSort(personList.getLastName());
+            String[] lastNames = new String[numberOfPersons];
+            for(int i = 0; i < numberOfPersons; i++){
+               lastNames[i] = personList[i].getLastName();
+            }
+            letterSort(lastNames);  // invokes letterSort method for last names
          }
          else if (criterion == 3){ // age
-            numberSort(personList.getAge());
+            int[] age = new int[numberOfPersons];
+            for(int i = 0; i < numberOfPersons; i++){
+               age[i] = personList[i].getAge();
+            }
+            numberSort(age);  // invokes numberSort method for ages
          }
          else if (criterion == 4){ // height
-            numberSort(personListist.getHeight());
+            int[] height = new int[numberOfPersons];
+            for(int i = 0; i < numberOfPersons; i++){
+               height[i] = personList[i].getHeight();
+            }
+            numberSort(height);  // invokes numberSort method for height
          }
       }
-       while (!quit); 
+       while (!quit);
+      
+         
+		// TO DO
+		// sort personList according to criterion
 
-       // TO DO
-       // sort personList according to criterion
- 
-       // output personList     
-     
-   }
+		// output personList
 
-   public static void letterSort(String[] array){ // alphabetical selection sort algorithm
+         }
+
+      public static void letterSort(String[] array){ // alphabetical selection sort algorithm
             
-      String temp;  //temporary string to store array value while swapping
-      for(int i = 0; i < array.length; i++){
-         for(int j = i+1; j < array.length; j++){
-            if(array[i].compareTo(array[j])>0){
-               temp = array[i];
-               array[i]=array[j];
-               array[j]=temp;
+         String temp;  //temporary string to store array value while swapping
+         for(int i = 0; i < array.length; i++){
+            for(int j = i+1; j < array.length; j++){
+               if(array[i].compareTo(array[j])>0){
+                  temp = array[i];
+                  array[i]=array[j];
+                  array[j]=temp;
+               }
             }
          }
+         System.out.print("Sorted: " + Arrays.toString(array));
       }
-      System.out.print("Sorted: " + Arrays.toString(array));
+            
+
+      public static void numberSort(int[] array){  //selection sort algorithm
+
+         for(int i = 0; i < array.length-1; i++){
+            int minIndex = i;             //index of smallest element in array[i...n]
+            for(int j = i+1; j < array.length; j++){ //traversing array
+                  if (array[j] < array[minIndex]){ //sets the index of the smallest array value to j
+                     minIndex = j;         
+                  }
+            }//close inner loop
+            int temp = array[minIndex];   //temporary variable to store minimal array value while swapping
+            array[minIndex] = array[i];   //swap smallest array element to the front of the array
+            array[i] = temp;
+         }//close loop
+          System.out.print("Sorted: " + Arrays.toString(array));
       }
       
-
-   public static void numberSort(int[] array){  //selection sort algorithm
-
-      for(int i = 0; i < array.length-1; i++){
-         int minIndex = i;             //index of smallest element in array[i...n]
-         for(int j = i+1; j < array.length; j++){ //traversing array
-             if (array[j] < array[minIndex]){ //sets the index of the smallest array value to j
-                 minIndex = j;         
-             }
-         }//close inner loop
-         int temp = array[minIndex];   //temporary variable to store minimal array value while swapping
-         array[minIndex] = array[i];   //swap smallest array element to the front of the array
-         array[i] = temp;
-     }//close loop
-     System.out.print("Sorted: " + Arrays.toString(array));
-   }
+                
+     
+   
    
    // method that reads a list of persons from a file and returns an array of persons
    public static Person[] readPersonList(String filename)
