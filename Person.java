@@ -42,6 +42,12 @@ public class Person {
 
   // getter weight
   public int getWeight() {return this.weight; }
+
+  //getter age
+  public int getAge() {return this.age; }
+
+  //getter Height
+  public int getHeight() {return this.height; }
     
   // returns a string representation of a person
   public String toString(){
