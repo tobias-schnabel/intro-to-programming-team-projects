@@ -31,10 +31,10 @@ public class PointLineClient{
     System.out.println("Does line g contain q? " + g.containsPoint(p));
     
     
-    //System.out.println("Does point p lie on line f? " + p.isOnLine(f));
-    //System.out.println("Does point q lie on line g? " + q.isOnLine(g));
+    System.out.println("Does point p lie on line f? " + p.isOnLine(f));
+    System.out.println("Does point q lie on line g? " + q.isOnLine(g));
     
-    //System.out.println("f and g intersect in point " + f.intersection(g));   
+    System.out.println("f and g intersect in point " + f.intersection(g));
   }
 }
 

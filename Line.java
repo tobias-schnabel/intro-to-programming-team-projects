@@ -12,7 +12,7 @@ public class Line{
    public Line(double slope, double intercept){
       this.slope = slope;
       this.intercept = intercept;
-   }
+   } //close constructor
    
    // constructor for a line through points p and q
    public Line(Point p, Point q){
@@ -54,7 +54,7 @@ public class Line{
        return Double.NaN;
       }
      else return (this.intercept/this.slope);
-   }  
+   }   //close method
    
    // returns the intersection point of this line and the line g
    // returns null if lines are parallel
