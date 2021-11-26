@@ -17,7 +17,6 @@ public class PersonSort{
       try{
          personList = readPersonList(filename);
          System.out.println("Person list has been read.");
-      
       }
       catch (FileNotFoundException e){
          e.printStackTrace();
@@ -66,14 +65,8 @@ public class PersonSort{
          }
       }
        while (!quit);
-      
-         
-		// TO DO
-		// sort personList according to criterion
 
-		// output personList
-
-         }
+         } //close main
 
       public static void letterSort(String[] array){ // alphabetical selection sort algorithm
             
@@ -106,10 +99,7 @@ public class PersonSort{
          }//close loop
           System.out.print("Sorted: " + Arrays.toString(array));
       }
-      
-                
-     
-   
+
    
    // method that reads a list of persons from a file and returns an array of persons
    public static Person[] readPersonList(String filename)
@@ -134,9 +124,8 @@ public class PersonSort{
       
       return list;
    }
-   
-   
-}
+
+} //close class
 
 
 
