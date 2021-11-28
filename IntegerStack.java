@@ -97,8 +97,17 @@ public class IntegerStack{
       return true; //stub
    } //close method
 
+   /*reverse the order of the items on the stack. You may only use variables
+    of primitive data types (e.g. int and boolean) as well as one other Queue instance
+    as auxiliary storage.*/
    public void reverse(){
-
+      Queue<Integer> auxQ = new Queue<>();
+      while (!this.isEmpty()){
+         auxQ.enqueue(this.pop());
+      }
+      while (!auxQ.isEmpty()){
+         this.push(auxQ.dequeue());
+      }
    } //close method
 } //close class
   
