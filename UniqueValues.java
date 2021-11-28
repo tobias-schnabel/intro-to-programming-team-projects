@@ -7,15 +7,20 @@ import java.util.*;
 public class UniqueValues {
     public static void main(String[] args) throws Exception {
 
-        System.out.print("Enter the size of the array: ");
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
+//        System.out.print("Enter the size of the array: ");
+//        Scanner in = new Scanner(System.in);
+//        int n = in.nextInt();
 
-        int[] array = randomIntArray(n);
+        int[] array = {1,2,2,3,3,4,4,4,5};
+
+//        int[] array = randomIntArray(n);
         System.out.println("Original array: " + Arrays.toString(array));
 
-        uniqueList(array);
-        System.out.println("CLeaned Array: " + Arrays.toString(array));
+
+        System.out.println("Cleaned Array:");
+        for (int x :  uniqueList(array)){
+            System.out.print(x + " ");
+        }
 
     }//close main
 
