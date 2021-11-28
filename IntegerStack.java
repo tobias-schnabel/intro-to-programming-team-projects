@@ -108,11 +108,11 @@ public class IntegerStack{
       //if elements are equal move element from this stack to aux
       else while(!this.isEmpty()){
          if(this.pop() == secondStack.pop()){
-            aux.push(this.pop); 
+            aux.push(this.pop()); 
          } 
-         else { //if elements dont match, returns false and stops the loop
+         else if(this.pop() != secondStack.pop()){ 
             isEqual = false;
-            break;   
+            break;   //if elements dont match, returns false and stops the loop
          }
       } //close loop
 
