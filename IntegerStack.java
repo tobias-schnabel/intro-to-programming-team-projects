@@ -103,22 +103,23 @@ public class IntegerStack{
       //if stacks don't have the same size return false
       if(size1 != size2){  
          isEqual = false; 
-      }
-
-      //if elements are equal move element from this stack to aux
-      else while(!this.isEmpty()){
-         if(this.pop() == secondStack.pop()){
-            aux.push(this.pop()); 
-         } 
-         else if(this.pop() != secondStack.pop()){ 
-            isEqual = false;
-            break;   //if elements dont match, returns false and stops the loop
+      } else while(!this.isEmpty()){ //if elements are equal move element from this stack to aux
+        int x = this.pop();
+        int y = secondStack.pop();
+         if(x == y){
+            aux.push(x);
+            aux.push(y);
+         } else {
+            isEqual =  false; //flag false
+            aux.push(x); //still push to aux stack (can't restore otherwise)
+            aux.push(y);
          }
       } //close loop
 
       // put auxiliary stack back on original stack     
       while(!aux.isEmpty()){
-         this.push(aux.pop());
+         secondStack.push(aux.pop()); //last element was of second stack (y)
+         this.push(aux.pop()); //second to last was of this (x)
       }
 
       return isEqual; 
