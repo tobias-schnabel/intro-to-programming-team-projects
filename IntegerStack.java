@@ -95,7 +95,10 @@ public class IntegerStack{
 
    public boolean isEqual(IntegerStack secondStack) {
       return true; //stub
-   }
-   
+   } //close method
+
+   public void reverse(){
+
+   } //close method
 } //close class
   

@@ -3,7 +3,8 @@
 
 import java.util.*;
 
-public class UniqueValuesList {
+
+public class UniqueValues {
     public static void main(String[] args) throws Exception {
 
         System.out.print("Enter the size of the array: ");
@@ -14,6 +15,7 @@ public class UniqueValuesList {
         System.out.println("Original array: " + Arrays.toString(array));
 
         uniqueList(array);
+        System.out.println("CLeaned Array: " + Arrays.toString(array));
 
     }//close main
 
@@ -46,10 +48,13 @@ public class UniqueValuesList {
                 counter++; //ups counter to move to next index in output array
             }
         } //close outer loop
-        int[] finalArray = Arrays.copyOf(arrayNoDup, counter);
-        ArrayList<Integer> arrayList = new ArrayList<Integer>(Arrays.asList(finalArray));
+        int[] finalArray = Arrays.copyOf(arrayNoDup, counter); //copies duplicate-free array back and truncates
 
-
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int x : finalArray){
+            arrayList.add(x);
+        }
+        //Arrays.asList(finalArray)
        return arrayList;
      
     } //close remove duplicates method
