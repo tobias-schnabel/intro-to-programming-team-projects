@@ -94,7 +94,34 @@ public class IntegerStack{
    }
 
    public boolean isEqual(IntegerStack secondStack) {
-      return true; //stub
+
+      IntegerStack aux = new IntegerStack();
+      boolean isEqual = true;
+      int size1 = this.size();
+      int size2 = secondStack.size();
+
+      //if stacks don't have the same size return false
+      if(size1 != size2){  
+         isEqual = false; 
+      }
+
+      //if elements are equal move element from this stack to aux
+      else while(!this.isEmpty()){
+         if(this.pop() == secondStack.pop()){
+            aux.push(this.pop); 
+         } 
+         else { //if elements dont match, returns false and stops the loop
+            isEqual = false;
+            break;   
+         }
+      } //close loop
+
+      // put auxiliary stack back on original stack     
+      while(!aux.isEmpty()){
+         this.push(aux.pop());
+      }
+
+      return isEqual; 
    } //close method
 
    /*reverse the order of the items on the stack. You may only use variables
