@@ -91,7 +91,11 @@ public class IntegerStack{
          this.push(aux.pop());
       }
     
-   }  
+   }
+
+   public boolean isEqual(IntegerStack secondStack) {
+      return true; //stub
+   }
    
-}
+} //close class
   
