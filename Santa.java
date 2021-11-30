@@ -54,7 +54,7 @@ public class Santa {
 
        } //close loop
 
-       return returnStack;
+        return returnStack;
 
     } //close method
 
@@ -65,40 +65,45 @@ public class Santa {
         int santaPresents = 0;
         int alabasterPresents = 0;
 
-        while(santaPresents != 12 || alabasterPresents != 12) {
-            double coinFlip = Math.random();
-            if (coinFlip <= 0.5) {    //Santa's turn
-                int firstPresent1 = inputStack.pop();
-                int secondPresent1 = inputStack.pop();
-                if (firstPresent1 == 1 && secondPresent1 == 1) { //case: 2 blue presents
-                    inputStack.push(1);
-                } else if (firstPresent1 == 0 || secondPresent1 == 0) { //cases: red and blue present & 2 red presents
-                    santaPresents++;
-                    inputStack.push(1);
-                }
-            }// close outer if statement
 
-            else if (coinFlip > 0.5) { //Alabaster's turn
-                int firstPresent2 = inputStack.pop();
-                int secondPresent2 = inputStack.pop();
-                if (firstPresent2 == 1 && secondPresent2 == 1) {  //case: 2 blue presents
-                    alabasterPresents++;
-                    inputStack.push(0);
-                } else if (firstPresent2 == 0 && secondPresent2 == 0) { //case: 2 red presents
-                    inputStack.push(1);
-                } else {                      //case: presents of different color
-                    alabasterPresents++;
-                    inputStack.push(0);
+            while (santaPresents != 12 || alabasterPresents != 12) {
+                double coinFlip = Math.random();
+                if (!inputStack.isEmpty()) {
+                    if (coinFlip <= 0.5) {    //Santa's turn
+                        int firstPresent1 = inputStack.pop();
+                        int secondPresent1 = inputStack.pop();
+                        if (firstPresent1 == 1 && secondPresent1 == 1) { //case: 2 blue presents
+                            inputStack.push(1);
+                        } else if (firstPresent1 == 0 || secondPresent1 == 0) { //cases: red and blue present & 2 red presents
+                            santaPresents++;
+                            inputStack.push(1);
+                        }
+                    }// close outer if statement
                 }
-            }//close  outer if statement
-        }//close while loop
-        if(santaPresents == 12 && alabasterPresents == 12){
-            outcome = 0;
-        } else if(santaPresents == 12 && alabasterPresents != 12){
-            outcome = 1;
-        } else if(alabasterPresents ==  12  && santaPresents != 12){
-            outcome = -1;
-        }
+                else if (coinFlip > 0.5) {//Alabaster's turn
+                    if (!inputStack.isEmpty()) {
+                        int firstPresent2 = inputStack.pop();
+                        int secondPresent2 = inputStack.pop();
+                        if (firstPresent2 == 1 && secondPresent2 == 1) {  //case: 2 blue presents
+                            alabasterPresents++;
+                            inputStack.push(0);
+                        } else if (firstPresent2 == 0 && secondPresent2 == 0) { //case: 2 red presents
+                            inputStack.push(1);
+                        } else {                      //case: presents of different color
+                            alabasterPresents++;
+                            inputStack.push(0);
+                        }
+                    }
+                }//close  outer if statement
+            }//close while loop
+
+            if (santaPresents == 12 && alabasterPresents == 12) {
+                outcome = 0;
+            } else if (santaPresents == 12 && alabasterPresents != 12) {
+                outcome = 1;
+            } else if (alabasterPresents == 12 && santaPresents != 12) {
+                outcome = -1;
+            }
 
         return outcome;
     } //close method
