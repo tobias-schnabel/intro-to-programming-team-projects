@@ -24,6 +24,8 @@ public class Fractions {
       
       //Product
       int NumProd = (N1 * N2);
+
+      //
       
    System.out.println("(" + N1 + "/" + D1 + ") + (" + N2 + "/" + D2 + ") = " + NumSum + "/" + DenSum);
    System.out.println("(" + N1 + "/" + D1 + ") * (" + N2 + "/" + D2 + ") = " + NumProd + "/" + DenSum);
