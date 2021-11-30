@@ -68,7 +68,7 @@ public class IntegerStack{
     *
     */
    public int pop() {
-      // if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+//      if (isEmpty()) throw new NoSuchElementException("Stack underflow");
       int  number = first.value;        // save item to return
       first = first.next;            // delete first node
       size--;
