@@ -65,11 +65,6 @@ public class Santa {
         int santaPresents = 0;
         int alabasterPresents = 0;
 
-        IntegerStack inputStack = new IntegerStack();
-        for (int i =0; i <= 24; i++){
-
-        }
-
             while (santaPresents != 12 || alabasterPresents != 12) {
                 double coinFlip = Math.random();
 
