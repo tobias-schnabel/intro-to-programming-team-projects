@@ -15,9 +15,9 @@ public class Santa {
         int ties = 0;
 
         //execute loop 100k times
-        for (int i = 0; i <= 100000; i++){
+        for (int dayCounter= 0; dayCounter<= 100000; dayCounter++){
             randomStack = randomStack(12, 12);
-            int outcome = santaGame(randomStack);
+            int outcome = game(randomStack);
            if (outcome == -1){
                alabWins += 1;
            } else if (outcome == 1){
@@ -58,62 +58,67 @@ public class Santa {
 
 
 
-    public static  int santaGame(IntegerStack inputStack) {
-        //RED IS ZERO, BLUE IS 1
-        int outcome = 0;
-        int santaPresents = 0;
-        int alabasterPresents = 0;
+    public static int game(IntegerStack inputStack){
+        int santaCounter = 0; //santa's presents
+        int alabasterCounter = 0; //alab's presents
+        int firstPresent, secondPresent; //storage vars to compare
+        //blue (Alabaster) = 1 and red (Santa) = 0
+        for(int dayCounter = 0; dayCounter<24; dayCounter++){
+            double coinFlip = (Math.random());
 
-        for (int dayCount = 0; dayCount  <= 24; dayCount++) {
-            double coinFlip = Math.random();
-                // Days 1 - 23
-                while (inputStack.size() > 1 && !inputStack.isEmpty()) {
-                    if (coinFlip <= 0.5) { // Santa's turn
-                        int firstPresent1 = inputStack.pop();
-                        int secondPresent1 = inputStack.pop();
-                        if (firstPresent1 == 1 && secondPresent1 == 1) { //case: 2 blue presents
-                            inputStack.push(1);
-                        } else if (firstPresent1 == 0 || secondPresent1 == 0) { //cases: red and blue present & 2 red presents
-                            santaPresents++;
-                            inputStack.push(1);
-                        }
-                    } else if (coinFlip > 0.5) {//Alabaster's turn
-
-                        int firstPresent2 = inputStack.pop();
-                        int secondPresent2 = inputStack.pop();
-                        if (firstPresent2 == 1 && secondPresent2 == 1) {  //case: 2 blue presents
-                            alabasterPresents++;
-                            inputStack.push(0);
-                        } else if (firstPresent2 == 0 && secondPresent2 == 0) { //case: 2 red presents
-                            inputStack.push(1);
-                        } else {                      //case: presents of different color
-                            alabasterPresents++;
-                            inputStack.push(0);
-                        }
+            // Santa
+            if(coinFlip > 0.5){
+                if(dayCounter != 23){
+                    firstPresent = inputStack.pop();
+                    secondPresent = inputStack.pop();
+                    if((firstPresent == 0 && secondPresent == 1) || (firstPresent == 1 && secondPresent == 0)){
+                        santaCounter += 1;
+                        inputStack.push(1);
+                    } else if (firstPresent == 0 && secondPresent == 0){
+                        santaCounter += 1;
+                        inputStack.push(0);
+                    } else if (firstPresent == 1 && secondPresent == 1){
+                        inputStack.push(1);
                     }
-                } //close inner while loop
-            // Day 24 //Santa: red, Alab: blue
-            if (dayCount == 24 && !inputStack.isEmpty()) {
-                int lastPresent = inputStack.pop();
-                if (coinFlip <= 0.5) { // Santa's turn
-                     if (lastPresent == 0){
-                            santaPresents += 1;
-                     }
-                    } else { // ALabs's turn
-                    if (lastPresent == 0){
-                        alabasterPresents += 1;
+                } else {
+                    firstPresent = inputStack.pop();
+                    if(firstPresent == 0){
+                        santaCounter += 1;
                     }
                 }
             }
-        } //close outer for loop
-            // outcome 0  (tie) is initializer value, only changed here if we have a winner
-            if (santaPresents > alabasterPresents) {
-                outcome = 1;
-            } else if (alabasterPresents > santaPresents) {
-                outcome = -1;
-            }
 
-    return outcome;
+            // Alabaster'
+            if(coinFlip <= 0.5){
+                if(dayCounter!= 23){
+                    firstPresent = inputStack.pop();
+                    secondPresent = inputStack.pop();
+                    if(firstPresent != secondPresent){
+                        alabasterCounter++;
+                        inputStack.push(0);
+                    } else if(firstPresent == 1){
+                        alabasterCounter++;
+                        inputStack.push(0);
+                    } else if(firstPresent == 0){
+                        inputStack.push(1);
+                    }
+                }  else{
+                    firstPresent = inputStack.pop();
+                    if(firstPresent == 0){
+                        alabasterCounter++;
+                        }
+                    }
+            }
+        }
+        int outcome = 0; //tie
+        if(alabasterCounter < santaCounter){
+            outcome = 1;
+        }
+        if(alabasterCounter > santaCounter){
+            outcome = -1;
+        }
+
+        return outcome;
     } //close method
 
 } //close class
