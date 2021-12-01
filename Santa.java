@@ -28,10 +28,7 @@ public class Santa {
             System.out.println("The game was played 100.000 times, each time using a new randomly generated stack of presents.");
             System.out.println("Of those 100.000 times, Santa won " + santaWins + " times, Alabaster won " + alabWins + " times, and there were " + ties + " ties.");
 
-
     } //close main
-
-
 
     //ﬁrst write a method that creates a random stack of 12 red and 12 blue presents
     public static IntegerStack randomStack (int blue,  int red){
@@ -55,8 +52,6 @@ public class Santa {
 
         return returnStack;
     } //close method
-
-
 
     public static int game(IntegerStack inputStack){
         int santaCounter = 0; //santa's presents
