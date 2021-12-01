@@ -1,5 +1,6 @@
 /* File: Customer.java
- * Author: Andre Berger  
+ * Authors: Authors: Dohmen, RJH (i6250494)
+           Schnabel, CT (i6255807)
  *
  * Data structure for customers with arrival and service times  
  */
