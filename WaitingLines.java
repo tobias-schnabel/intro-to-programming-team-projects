@@ -5,6 +5,8 @@
  * Class that simulates a waiting line system 
  */
 
+import java.util.Scanner;
+
 public class WaitingLines {
 
    private final int numberOfCashiers;
@@ -32,15 +34,21 @@ public class WaitingLines {
    // test the simulation using (command line) parameters for M, T, K and D
    public static void main(String[] args) {
 
-      int M = 5; //try different values
-      int T = 600; // T = 600 for testing
-      int K = 5; // K = 5 for testing
-      int D = 3; // D = 3 for testing
+      Scanner in = new Scanner(System.in);
+      System.out.println("Please enter the number of cashiers (M): "); //5
+      int M = in.nextInt();
+      System.out.println("Please enter the time horizon in minutes (T): "); //600
+      int T = in.nextInt();
+      System.out.println("Please enter the maximum number of customers arriving at a time (K): "); //5
+      int K = in.nextInt();
+      System.out.println("Please enter the maximum service time per customer (D): "); //3
+      int D = in.nextInt();
+      in.close();
 
       WaitingLines waitingLines = new WaitingLines(M, T, K, D);
 
       waitingLines.run();
-
+      System.out.println("Simulation results: ");
       System.out.println("Average wait time per customer: " + waitingLines.getAverageWaitTime());
       System.out.println("Average queue length: " + waitingLines.getAverageQueueLength());
    }
@@ -60,7 +68,7 @@ public class WaitingLines {
    // runs the simulation as described in the exercise
    public void run() {
       //instantiate queue
-      Queue<Customer> customerQueue = new Queue<Customer>();
+      Queue<Customer> customerQueue = new Queue<>();
 
       //create integer array of length M, equal to the number of cashiers
       // where the ith entry of the array represents the time that cashier i becomes available again.
@@ -98,7 +106,9 @@ public class WaitingLines {
             if (availability[k] > 0) {
                availability[k]--;
             }//close if statement
+
          }//close for loop
+
       }//close outer loop
       this.finalQueueLength = this.totalQueueLength;
    }//close method
