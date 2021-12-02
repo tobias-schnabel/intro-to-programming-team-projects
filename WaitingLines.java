@@ -34,23 +34,30 @@ public class WaitingLines {
    // test the simulation using (command line) parameters for M, T, K and D
    public static void main(String[] args) {
 
+      //get user input
       Scanner in = new Scanner(System.in);
-      System.out.println("Please enter the number of cashiers (M): "); //5
-      int M = in.nextInt();
       System.out.println("Please enter the time horizon in minutes (T): "); //600
       int T = in.nextInt();
       System.out.println("Please enter the maximum number of customers arriving at a time (K): "); //5
       int K = in.nextInt();
       System.out.println("Please enter the maximum service time per customer (D): "); //3
       int D = in.nextInt();
+      System.out.println("Please enter the maximum number of cashiers (M > 1):"); //5
+      int M = in.nextInt();
       in.close();
+      System.out.println("\n");
 
-      WaitingLines waitingLines = new WaitingLines(M, T, K, D);
 
-      waitingLines.run();
-      System.out.println("Simulation results: ");
-      System.out.println("Average wait time per customer: " + waitingLines.getAverageWaitTime());
-      System.out.println("Average queue length: " + waitingLines.getAverageQueueLength());
+      for (int m = 1; m <= M; m++){
+         WaitingLines waitingLines = new WaitingLines(m, T, K, D); //instantiate
+         waitingLines.run(); //execute
+         System.out.println("Simulation results for M = " + m + " cashiers: ");
+         System.out.println("Average wait time: " + Math.round(waitingLines.getAverageWaitTime()) + " minutes per customer");
+         System.out.println("Average queue length: " + Math.round(waitingLines.getAverageQueueLength()) +"\n");
+         System.out.println("**********************************************\n");
+      }
+
+
    }
 
    // returns the average wait time of customers that have been served
