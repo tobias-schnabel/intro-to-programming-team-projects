@@ -1,0 +1,84 @@
+Documentation for File: WaitingLines.java
+Authors: Dohmen, RJH (i6250494)
+           Schnabel, CT (i6255807)
+
+
+
+Please note that waiting time is not necessarily linear because both the number of customers and their respective service times are (pseudo) random.
+
+Recommendation: have 9+ cashiers
+
+
+Sample I/O below:
+
+Please enter the time horizon in minutes (T): 
+600
+Please enter the maximum number of customers arriving at a time (K): 
+5
+Please enter the maximum service time per customer (D): 
+3
+Please enter the maximum number of cashiers (M > 1): 
+
+10
+Simulation results for M = 1 cashiers: 
+Average wait time: 31 minutes per customer
+Average queue length: 919
+
+**********************************************
+
+Simulation results for M = 2 cashiers: 
+Average wait time: 57 minutes per customer
+Average queue length: 790
+
+**********************************************
+
+Simulation results for M = 3 cashiers: 
+Average wait time: 72 minutes per customer
+Average queue length: 635
+
+**********************************************
+
+Simulation results for M = 4 cashiers: 
+Average wait time: 70 minutes per customer
+Average queue length: 605
+
+**********************************************
+
+Simulation results for M = 5 cashiers: 
+Average wait time: 72 minutes per customer
+Average queue length: 449
+
+**********************************************
+
+Simulation results for M = 6 cashiers: 
+Average wait time: 69 minutes per customer
+Average queue length: 343
+
+**********************************************
+
+Simulation results for M = 7 cashiers: 
+Average wait time: 51 minutes per customer
+Average queue length: 239
+
+**********************************************
+
+Simulation results for M = 8 cashiers: 
+Average wait time: 38 minutes per customer
+Average queue length: 151
+
+**********************************************
+
+Simulation results for M = 9 cashiers: 
+Average wait time: 4 minutes per customer
+Average queue length: 14
+
+**********************************************
+
+Simulation results for M = 10 cashiers: 
+Average wait time: 2 minutes per customer
+Average queue length: 5
+
+**********************************************
+
+
+Process finished with exit code 0
