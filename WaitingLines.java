@@ -33,7 +33,7 @@ public class WaitingLines {
    public static void main(String[] args) {
 
       int M = 5; //try different values
-      int T = 6; // T = 600 for testing
+      int T = 600; // T = 600 for testing
       int K = 5; // K = 5 for testing
       int D = 3; // D = 3 for testing
 
@@ -61,7 +61,6 @@ public class WaitingLines {
    public void run() {
       //instantiate queue
       Queue<Customer> customerQueue = new Queue<Customer>();
-
 
       //create integer array of length M, equal to the number of cashiers
       // where the ith entry of the array represents the time that cashier i becomes available again.
