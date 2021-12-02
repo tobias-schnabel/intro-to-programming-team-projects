@@ -33,7 +33,7 @@ public class WaitingLines {
    public static void main(String[] args) {
 
       int M = 5; //try different values
-      int T = 600; // T = 600 for testing
+      int T = 6; // T = 600 for testing
       int K = 5; // K = 5 for testing
       int D = 3; // D = 3 for testing
 
@@ -54,13 +54,14 @@ public class WaitingLines {
    // returns the average queue length over the time period
    public double getAverageQueueLength() {
 
-      return (double) (this.totalQueueLength) / (double) (this.numberOfTimePeriods);
+      return (double) (this.finalQueueLength) / (double) (this.numberOfTimePeriods);
    }
 
    // runs the simulation as described in the exercise
    public void run() {
-
+      //instantiate queue
       Queue<Customer> customerQueue = new Queue<Customer>();
+
 
       //create integer array of length M, equal to the number of cashiers
       // where the ith entry of the array represents the time that cashier i becomes available again.
@@ -69,13 +70,13 @@ public class WaitingLines {
       //iterate for each time period up until T
       for (int t = 0; t <= this.numberOfTimePeriods; t++) {
          //generates a random # between 1 and maxNumberOfCustomers
-         int arrivingCustomers = 1 + (int) (Math.random()) * (this.maxNumberOfCustomers);
+         int arrivingCustomers = 1 + (int) (Math.random() * 2)  * (this.maxNumberOfCustomers);
          this.totalNumberOfCustomers += arrivingCustomers;  //update total # of customers
 
          //assigns service time for each customer and adds customers to the queue
          for (int i = 0; i < arrivingCustomers; i++) {
             //generates a random # between 1 and maxServiceTime
-            int serviceTime = 1 + (int) (Math.random()) * (this.maxServiceTime);
+            int serviceTime = 1 + (int) (Math.random() * 2) * (this.maxServiceTime);
             Customer customer = new Customer(t, serviceTime);
             customerQueue.enqueue(customer);
          }// close for loop
@@ -100,12 +101,7 @@ public class WaitingLines {
             }//close if statement
          }//close for loop
       }//close outer loop
+      this.finalQueueLength = this.totalQueueLength;
    }//close method
 }//close class
-
-
- 
-
-
-
 
