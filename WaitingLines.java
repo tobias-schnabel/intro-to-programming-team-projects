@@ -4,9 +4,6 @@
  *
  * Class that simulates a waiting line system 
  */
- 
-
-import java.util.*;
 
 public class WaitingLines {
 
@@ -32,32 +29,6 @@ public class WaitingLines {
       this.totalNumberOfCustomers = 0;
    }
 
-   public int getTotalQueueLength() {
-      return this.totalQueueLength;
-   }
-
-   public int getTotalWaitTime() {
-      return this.totalWaitTime;
-   }
-
-   public int getTotalNumberOfCustomers() {
-      return this.totalNumberOfCustomers;
-   }
-
-   public void setTotalQueueLength(int queueLength) {
-      this.totalQueueLength = this.totalQueueLength + queueLength;
-   }
-
-   public void setTotalWaitTime(int waitTime) {
-      //updates totalWaitTime instead of replacing value
-      this.totalWaitTime = this.totalWaitTime + waitTime;
-   }
-
-   public void setTotalNumberOfCustomers(int numberOfCustomers) {
-      //updates totalNumberOfCustomers instead of replacing value
-      this.totalNumberOfCustomers = this.totalNumberOfCustomers + numberOfCustomers;
-   }
-
    // test the simulation using (command line) parameters for M, T, K and D
    public static void main(String[] args) {
 
@@ -77,56 +48,62 @@ public class WaitingLines {
    // returns the average wait time of customers that have been served
    public double getAverageWaitTime() {
 
-      double avgWaitTime = this.getTotalWaitTime() / this.getTotalNumberOfCustomers();
-      // change this
-      return avgWaitTime;
+      return (double) (this.totalWaitTime) / (double) (this.totalNumberOfCustomers);
    }
 
    // returns the average queue length over the time period
    public double getAverageQueueLength() {
 
-      double avgQueueLength = 0;
-      // change this
-      return avgQueueLength;
+      return (double) (this.totalQueueLength) / (double) (this.numberOfTimePeriods);
    }
 
    // runs the simulation as described in the exercise
    public void run() {
 
       Queue<Customer> customerQueue = new Queue<Customer>();
-      //create integer array of length M,
+
+      //create integer array of length M, equal to the number of cashiers
       // where the ith entry of the array represents the time that cashier i becomes available again.
-      int[] availability = new int[this.numberOfCashiers];   //init array
+      int[] availability = new int[this.numberOfCashiers];
 
-      //for(int i = 0; i < this.numberOfCashiers; i++){
-      //  availability[i] = 1;
-      // }
-
-      for (int i = 0; i < this.numberOfTimePeriods; i++) { //iterate time periods up until T
+      //iterate for each time period up until T
+      for (int t = 0; t <= this.numberOfTimePeriods; t++) {
+         //generates a random # between 1 and maxNumberOfCustomers
          int arrivingCustomers = 1 + (int) (Math.random()) * (this.maxNumberOfCustomers);
+         this.totalNumberOfCustomers += arrivingCustomers;  //update total # of customers
 
-         for (int j = 0; j < arrivingCustomers; j++) { //assigns service times & add customers to queue
+         //assigns service time for each customer and adds customers to the queue
+         for (int i = 0; i < arrivingCustomers; i++) {
+            //generates a random # between 1 and maxServiceTime
             int serviceTime = 1 + (int) (Math.random()) * (this.maxServiceTime);
-            Customer customer = new Customer(i, serviceTime);
+            Customer customer = new Customer(t, serviceTime);
             customerQueue.enqueue(customer);
-         }// close inner loop
+         }// close for loop
 
-         boolean cashierAvailable = true;
-         for(int k = 0; k < this.numberOfCashiers; k++){
-            if(!availability[i] < customerQueue.dequeue()){
-               cashierAvailable = false;
-            }  //checks whether a cashier is available
-         }
+         for (int j = 0; j < this.numberOfCashiers; j++) {
+            //dequeues a customer in case queue is non-empty and a cashier is available
+            if (!customerQueue.isEmpty() && availability[j] == 0) {
+               Customer nextCustomer = customerQueue.dequeue();
+               availability[j] = nextCustomer.getServiceTime();
+               this.totalWaitTime += t - nextCustomer.getArrivalTime(); //update totalWaitTime
+            }// close if statement
+         }//close for loop
 
-         if(!customerQueue.isEmpty() && cashierAvailable){
-            customerQueue.dequeue();
-            this.setTotalQueueLength(1);
-            this.setTotalNumberOfCustomers(1);
+         //update total queue length
+         this.totalQueueLength += customerQueue.size();
 
-         }
-      }
-   }
-}
+         //subtracts the passed time (1) from each cashier's
+         //service time in case it is larger than 0
+         for (int k = 0; k < this.numberOfCashiers; k++) {
+            if (availability[k] > 0) {
+               availability[k]--;
+            }//close if statement
+         }//close for loop
+      }//close outer loop
+   }//close method
+}//close class
+
+
  
 
 
