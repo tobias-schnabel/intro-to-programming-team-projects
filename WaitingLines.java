@@ -50,7 +50,7 @@ public class WaitingLines {
 
    public void setTotalWaitTime(int waitTime) {
       //updates totalWaitTime instead of replacing value
-      this.totalWaitTime = this.totalWaitTime + waitTime;
+      this.totalWaitTime += waitTime;
    }
 
    public void setTotalNumberOfCustomers(int numberOfCustomers) {
@@ -62,7 +62,7 @@ public class WaitingLines {
    public static void main(String[] args) {
 
       int M = 5; //try different values
-      int T = 600; // T = 600 for testing
+      int T = 6; // T = 600 for testing
       int K = 5; // K = 5 for testing
       int D = 3; // D = 3 for testing
 
@@ -77,9 +77,8 @@ public class WaitingLines {
    // returns the average wait time of customers that have been served
    public double getAverageWaitTime() {
 
-      double avgWaitTime = this.getTotalWaitTime() / this.getTotalNumberOfCustomers();
       // change this
-      return avgWaitTime;
+      return (double) this.getTotalWaitTime() / (double) this.getTotalNumberOfCustomers();
    }
 
    // returns the average queue length over the time period
@@ -92,41 +91,43 @@ public class WaitingLines {
 
    // runs the simulation as described in the exercise
    public void run() {
-
+      //instantiate queue
       Queue<Customer> customerQueue = new Queue<Customer>();
       //create integer array of length M,
       // where the ith entry of the array represents the time that cashier i becomes available again.
       int[] availability = new int[this.numberOfCashiers];   //init array
 
-      //for(int i = 0; i < this.numberOfCashiers; i++){
-      //  availability[i] = 1;
-      // }
 
-      for (int i = 0; i < this.numberOfTimePeriods; i++) { //iterate time periods up until T
-         int arrivingCustomers = 1 + (int) (Math.random()) * (this.maxNumberOfCustomers);
-
+      //iterate over periods
+      for (int t = 0; t < this.numberOfTimePeriods; t++) { //iterate time periods up until T
+         //get # arr cusotmers
+         int arrivingCustomers = 1 + (int) (Math.random()*2) * (this.maxNumberOfCustomers);
+         //instantiate arriving customers
          for (int j = 0; j < arrivingCustomers; j++) { //assigns service times & add customers to queue
-            int serviceTime = 1 + (int) (Math.random()) * (this.maxServiceTime);
-            Customer customer = new Customer(i, serviceTime);
+            int serviceTime = 1 + (int) (Math.random()*2) * (this.maxServiceTime);
+            Customer customer = new Customer(t, serviceTime);
             customerQueue.enqueue(customer);
-         }// close inner loop
-
-         boolean cashierAvailable = true;
-         for(int k = 0; k < this.numberOfCashiers; k++){
-            if(!availability[i] < customerQueue.dequeue()){
-               cashierAvailable = false;
-            }  //checks whether a cashier is available
          }
 
-         if(!customerQueue.isEmpty() && cashierAvailable){
-            customerQueue.dequeue();
-            this.setTotalQueueLength(1);
-            this.setTotalNumberOfCustomers(1);
+         //check  whether cashier available
+         // while (!customerQueue.isEmpty()){
+            for(int i : availability){
+               if (availability[i] == 0){ //free cashier, so we dequeue
+                  Customer arrivingCustomer;
+                  arrivingCustomer = customerQueue.dequeue();
+                  availability[i] += arrivingCustomer.getServiceTime();
+                  setTotalWaitTime(t - (arrivingCustomer.getArrivalTime()));
+               }
+            }
+        // } //close while
 
+         for (int a : availability) {
+            if (availability[a] > 0) { availability[a] -= 1; } ; //prep for next iteration
          }
-      }
-   }
-}
+
+      } // closes loop for time
+   } //clsoe method
+} //close class
  
 
 
