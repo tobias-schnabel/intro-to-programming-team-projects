@@ -7,7 +7,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class PersonData {
@@ -27,97 +26,65 @@ public class PersonData {
 
 
       ////////////////// new methods
-      removeErrors(personList); //clean data
-      System.out.println( personList.size() + " valid entries remaining );
+      if(personList != null){ //redundant?
+         removeErrors(personList); //clean data
+         System.out.println(personList.size() + " valid entries remain after cleaning erroneous observations. \n");
 
-      averageBMI(personList); //compute avg BMI
+         averageBMI(personList); //compute avg BMI
 
-      System.out.println(numberOfElevators(personList)); //compute # elevators before sorting
+         int initialResult = numberOfElevators(personList);
+         System.out.println("\n" + initialResult + " elevators are required."); //compute # elevators before sorting
 
-      sortWeight(personList); //sort by weight
+         sortWeightAscending(personList); //sort by weight ascending
+         int resultAscending = numberOfElevators(personList); //compute # elevators
 
-      System.out.println(numberOfElevators(personList)); //compute # elevators
+         sortWeight(personList); //sort by weight descending
+         int resultDescending = numberOfElevators(personList); //compute # elevators again
 
-      //////////////////
-
-      Scanner input = new Scanner(System.in);
-      boolean quit = false;
-      int numberOfPersons = personList.length;
-      
-      do{
-         System.out.println();     
-         System.out.println("Enter sort criterion: (1) First Name, (2) Last Name, (3) Age, (4) Height, or (0) to quit.");
-      
-         int criterion = input.nextInt();
-      
-         if (criterion == 0){ //quit
-            quit = true;
-         }
-         else if (criterion == 1){ // first name
-            String[] firstNames = new String[numberOfPersons];
-            for(int i = 0; i < numberOfPersons; i++){
-               firstNames[i] = personList[i].getFirstName();
-            }
-            letterSort(firstNames); // invokes letterSort method for first names
-         }
-         else if (criterion == 2){ // last name
-            String[] lastNames = new String[numberOfPersons];
-            for(int i = 0; i < numberOfPersons; i++){
-               lastNames[i] = personList[i].getLastName();
-            }
-            letterSort(lastNames);  // invokes letterSort method for last names
-         }
-         else if (criterion == 3){ // age
-            int[] age = new int[numberOfPersons];
-            for(int i = 0; i < numberOfPersons; i++){
-               age[i] = personList[i].getAge();
-            }
-            numberSort(age);  // invokes numberSort method for ages
-         }
-         else if (criterion == 4){ // height
-            int[] height = new int[numberOfPersons];
-            for(int i = 0; i < numberOfPersons; i++){
-               height[i] = personList[i].getHeight();
-            }
-            numberSort(height);  // invokes numberSort method for height
-         }
+         if (resultAscending < resultDescending && resultAscending < initialResult){
+            System.out.println("Sorting the list by weight in ascending order improved our result by " + (initialResult - resultAscending) + ".");
+         } else if (resultAscending > resultDescending && resultDescending < initialResult){
+            System.out.println("Sorting the list by weight in descending order improved our result by " + (initialResult - resultDescending) + ".");
+         } else { System.out.println("Sorting the list by weight does not lead to an improvement in our result");}
       }
-       while (!quit);
+      //////////////////
 
          } //close main
 
-      public static void letterSort(String[] array){ // alphabetical selection sort algorithm
-            
-         String temp;  //temporary string to store array value while swapping
-         for(int i = 0; i < array.length; i++){
-            for(int j = i+1; j < array.length; j++){
-               if(array[i].compareTo(array[j])>0){
-                  temp = array[i];
-                  array[i]=array[j];
-                  array[j]=temp;
-               }
+
+
+   public static int numberOfElevators(ArrayList<Person> personList){
+      ArrayList<Integer> numberOfElevators = new ArrayList<>(); //declare
+      numberOfElevators.add(0); //init
+      int entries; //declare
+      int weight; //declare
+      int totalWeight = 0; //init
+      //traverse personList
+      for(Person candidate : personList){
+         weight = candidate.getWeight();
+         entries = 0; //init
+         while(weight != 0){
+            if(numberOfElevators.get(entries) + weight <= 450){ //if person fits in bin, place there
+               numberOfElevators.set(entries, numberOfElevators.get(entries) + weight);
+               totalWeight +=weight;
+               weight = 0; //reset
+            }
+
+            else if(entries < numberOfElevators.size()-1){
+               entries++; //check next elevator if available
+            }
+
+            else if(entries == numberOfElevators.size()-1){
+               numberOfElevators.add(weight); //add additional elevator if necessary
+               totalWeight += weight;
+               weight = 0;
+
             }
          }
-         System.out.print("Sorted: " + Arrays.toString(array));
       }
-            
-
-      public static void numberSort(int[] array){  //selection sort algorithm
-
-         for(int i = 0; i < array.length-1; i++){
-            int minIndex = i;             //index of smallest element in array[i...n]
-            for(int j = i+1; j < array.length; j++){ //traversing array
-                  if (array[j] < array[minIndex]){ //sets the index of the smallest array value to j
-                     minIndex = j;         
-                  }
-            }//close inner loop
-            int temp = array[minIndex];   //temporary variable to store minimal array value while swapping
-            array[minIndex] = array[i];   //swap smallest array element to the front of the array
-            array[i] = temp;
-         }//close loop
-          System.out.print("Sorted: " + Arrays.toString(array));
-      }
-
+      //returns number of elevator runs necessary
+      return numberOfElevators.size();
+   }
    
    // method that reads a list of persons from a file and returns an array of persons
    public static ArrayList<Person> readPersonList(String filename)
@@ -127,7 +94,7 @@ public class PersonData {
       Scanner input = new Scanner (file);
       int n = input.nextInt();
 
-      ArrayList<Person> PersonList = new ArrayList<Person>();
+      ArrayList<Person> PersonList = new ArrayList<>();
       
       for(int i=0; i<n; i++){
          String firstName = input.next();
@@ -148,44 +115,91 @@ public class PersonData {
 
       for(int i = 0; i < personList.size(); i++){
          Person candidate = personList.get(i);
-         if(candidate.getHeight() == 0){
-            personList.remove(i); //?can we just use remove
+         if(!(candidate.getHeight() > 0)){
+            personList.remove(i);
+            i -= 1;
          }
+
       } //close for loop
    } //close method
 
-   public static void sortWeight(ArrayList<Person> personList){
-      for(int i = 0; i < personList.size(); i++){
-         Person person_i = personList.get(i);
-         int weight_i = person_i.getWeight();
-         for(int j = personList.size() - 1; j > i; j--){ //running index from opposite direction
-            Person person_j = personList.get(j);
-            if(person_j.getWeight() < weight_i){
-               personList.add(i, person_j);
-               personList.add(j, person_i);
-            } //close if
-         } //close for
-      } //close for
-   } //close method
 
-   public static void averageBMI(ArrayList<Person> personList){
+   public static void sortWeight(ArrayList<Person> personList){
+      int minIndex;
+      int n = personList.size();
+
+      for(int i = 0; i < n - 1; i++){ //one by one moving last element of unsorted subarray
+         minIndex = i; //finding the minimum element in the unsorted array.
+         for(int j = i + 1; j < n; j++){
+            int currentMinWeight = personList.get(minIndex).getWeight();
+            int weight_j = personList.get(j).getWeight();
+            if(weight_j > currentMinWeight){
+               minIndex = j; //search for the lowest index.
+            }
+            //Swap minimum element and put it in the first position.
+         }
+         if(minIndex != i){
+            Person tempPerson = personList.get(i);
+            personList.set(i, personList.get(minIndex)); //put first
+            personList.set(minIndex, tempPerson); //replace with temp
+         }
+      }
+      //return personList;
+   }
+
+   public static void sortWeightAscending(ArrayList<Person> personList){
+      int maxIndex;
+      int n = personList.size();
+
+      for(int i = 0; i < n - 1; i++){ //one by one moving last element of unsorted subarray
+         maxIndex = i; //get max value
+         for(int j = i + 1; j < n; j++){
+            int currentMinWeight = personList.get(maxIndex).getWeight();
+            int weight_j = personList.get(j).getWeight();
+            if(weight_j < currentMinWeight){
+               maxIndex = j; //search for the lowest index.
+            }
+            //Swap minimum element and put it in the first position.
+         }
+         if(maxIndex != i){
+            Person tempPerson = personList.get(i);
+            personList.set(i, personList.get(maxIndex)); //put first
+            personList.set(maxIndex, tempPerson); //replace with temp
+         }
+      }
+      //return personList;
+   }
+
+
+
+
+   public static void averageBMI(ArrayList<Person> personList) {
 
       int[] bmi = new int[6];
       int[] count = new int[bmi.length];
 
-      for(int j = 0; j < personList.size(); j++){
-         Person person = personList.get(j);
+      for (Person person : personList) {
          int age = person.getAge();
-         double bmi = person.getWeight() / (double) Math.pow(((double)person.getHeight()/100),2);
-         for(int k = 0; k < bmi.length; k++){
-            int lowerBound = 10*(k+2);
-            int upperBound = 10*(k+3);
-            if(age >= lowerBound && age < upperBound){
-               bmi[k] += bmi;
+         double bmiValue = person.getWeight() / Math.pow(((double) person.getHeight() / 100), 2); //BMI rounded to 2 decimals (only for output legibility)
+         for (int k = 0; k < bmi.length; k++) {
+            int lowerBound = 10 * (k + 2);
+            int upperBound = 10 * (k + 3);
+            if (age >= lowerBound && age < upperBound) {
+               bmi[k] += bmiValue;
                count[k]++;
             }
          }
       }
+      for(int l = 0; l < bmi.length; l++){
+         if(count[l] != 0){
+            double averageBMI = bmi[l]/(double)count[l];
+            double avgRoundedBMI = (double) Math.round(averageBMI * 100) / 100;
+            int lowerBound = 10*(l+2);
+            int upperBound = 10*(l+3) - 1;
+            System.out.println("There were " + count[l] + " persons in the age group of " + lowerBound + "-" + upperBound + " with an average BMI of: " + avgRoundedBMI );
+         }
+      }
+   } //close method
 
 
 } //close class
