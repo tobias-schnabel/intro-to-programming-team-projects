@@ -1,6 +1,7 @@
 /* File: Person.java
- *  Author: Andre Berger
- *   
+ Authors: Dohmen, RJH (i6250494)
+         Schnabel, CT (i6255807)
+
  *  Implements several methods for the class Person.
  */
   
