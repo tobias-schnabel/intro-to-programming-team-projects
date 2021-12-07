@@ -1,0 +1,24 @@
+File: PersonData.java
+ Authors: Dohmen, RJH (i6250494)
+         Schnabel, CT (i6255807)
+
+
+Sample output:
+
+Person list has been read.
+190 valid entries remain after cleaning erroneous observations. 
+
+There are 25 persons in the age group of 20-29 with a collective average BMI of 25.44.
+There are 29 persons in the age group of 30-39 with a collective average BMI of 23.21.
+There are 37 persons in the age group of 40-49 with a collective average BMI of 24.67.
+There are 26 persons in the age group of 50-59 with a collective average BMI of 27.52.
+There are 43 persons in the age group of 60-69 with a collective average BMI of 25.46.
+There are 30 persons in the age group of 70-79 with a collective average BMI of 25.85.
+
+34 elevators are required.
+Sorting the list by weight in descending order improved our result by 1.
+
+Process finished with exit code 0
+
+
+This output makes intuitive sense (to us): sorting in descending order means putting "big marbles" (heavy persons) into bins first, which makes it easier to fill up the last few bins with the remaining small marbles. 
